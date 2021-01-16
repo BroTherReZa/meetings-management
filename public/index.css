@@ -1,0 +1,9 @@
+@font-face{
+    font-family: 'iranSans';
+    src: url('./fonts/IRANSansWeb.woff')
+}
+
+body{
+    font-family: 'iranSans';
+    direction: rtl;
+}

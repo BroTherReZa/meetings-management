@@ -1,0 +1,27 @@
+.nav-item {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 20px;
+    display: block;
+  }
+
+.nav-item a {
+    color: #bbbbbb;
+    text-decoration: none;
+    height: 100%;
+    padding: 3px 8px;
+    box-sizing: border-box;
+    display: block;
+    font: inherit;
+}
+li a.active {
+    background-color: #818181;
+}
+.nav-item a.active, .nav-item a:hover{
+    color: #ffffff;
+    font-size: 22px;
+}
+.count{
+    float: left;
+    display: inline-block;
+}
