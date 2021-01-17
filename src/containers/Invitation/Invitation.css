@@ -12,3 +12,7 @@ input.dp__input {
     text-align: center;
     font-size: 17px;
 }
+.search-participants .input {
+    display: inline-block;
+    width: 70%;
+}

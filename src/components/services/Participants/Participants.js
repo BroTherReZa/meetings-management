@@ -4,6 +4,9 @@ import Input from '../../UI/Input/Input'
 import "./Participants.css";
 
 const Participants = (props) => {
+    const searchParticipants = (event) =>{
+        return
+    }
   return (
     <Input
       key="id"
@@ -13,9 +16,9 @@ const Participants = (props) => {
         placeholder: "نام یا نام خانوادگی یا شماره تماس یا پست سازمانی",
       }}
       value=""
-      //   invalid={!item.config.valid}
-      //   used={item.config.used}
-      //   change={(event) => inputChangeHandler(event, item.id)}
+      invalid={false}
+      used={true}
+      change={searchParticipants}
     />
   );
 };
