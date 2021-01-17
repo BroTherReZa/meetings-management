@@ -7,6 +7,7 @@ import Today from "../../../containers/Today/Today";
 import Important from '../../../containers/Important/Important'
 import Planned from '../../../containers/Planned/Planned'
 import Invited from '../../../containers/Invited/Invited'
+import Invitation from "../../../containers/Invitation/Invitation";
 
 
 
@@ -17,6 +18,7 @@ const RouteConfig = () => {
       <Route exact path={Path.IMPORTANT} component={Important} />
       <Route exact path={Path.PLANNED} component={Planned} />
       <Route exact path={Path.INVITED} component={Invited} />
+      <Route exact path={Path.INVITATION} component={Invitation} />
       <PrivateRoute path="/account">
           <Account />
       </PrivateRoute>

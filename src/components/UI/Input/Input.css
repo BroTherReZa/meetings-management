@@ -1,0 +1,22 @@
+.input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+.input-element{
+    outline: none;
+    border: 1px solid #e1bee7;
+    color: #000000;
+    font: inherit;
+    padding: 6px;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 3px;
+}
+.invalid {
+    border: 2px solid #c62828
+}
+textarea {
+    height: 8em;
+}

@@ -16,6 +16,7 @@
 }
 li a.active {
     background-color: #818181;
+    border-radius: 3px;
 }
 .nav-item a.active, .nav-item a:hover{
     color: #ffffff;

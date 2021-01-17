@@ -1,0 +1,2 @@
+export const SHOWSIDEMENU = 'SHOWSIDMENU'
+export const INPUTCHANGE = 'INPUTCHANGE'
