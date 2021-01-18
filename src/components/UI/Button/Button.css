@@ -6,12 +6,13 @@
     font: inherit;
     color: #ffffff;
     margin: 10px;
-    padding: 10px ;
+    padding: 10px;
+    line-height: normal;
 }
 .success {
    background: #388e3c;
 }
-.danger {
+.cancel {
    background: #de2f2f;
 }
 .form {

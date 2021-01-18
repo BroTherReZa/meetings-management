@@ -13,7 +13,7 @@ const Participants = (props) => {
       inputType="input"
       elementConfig={{
         type: "text",
-        placeholder: "نام یا نام خانوادگی یا شماره تماس یا پست سازمانی",
+        placeholder: "نام / نام خانوادگی / شماره تماس / ایمیل / پست سازمانی",
       }}
       value=""
       invalid={false}

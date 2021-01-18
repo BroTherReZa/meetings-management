@@ -45,10 +45,7 @@ const Invitation = (props) => {
       <div className="invitation">
         <h1>فرم دعوت به جلسه</h1>
         <form>
-          <div className="meeting-date">
-            <label>تاریخ و ساعت جلسه :</label>
-            <DatePicker />
-          </div>
+            <DatePicker label="تاریخ و ساعت جلسه :" />
           {elementsArray.map((item) => (
             <Input
               key={item.id}
