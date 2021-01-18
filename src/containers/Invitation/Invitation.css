@@ -3,7 +3,7 @@
     padding: 0;
     width: 100%;
 }
-.sc-kpOJdX > div {
+.sc-kpOJdX > div:first-of-type {
     display: inline-block;
     margin-right: 16px;
 }
