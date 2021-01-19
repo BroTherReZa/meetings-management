@@ -7,14 +7,14 @@ import { DatePicker } from "jalali-react-datepicker";
 import Participants from "../../components/services/Participants/Participants";
 import "./Invitation.css";
 import ParticipantsList from "../../components/services/Participants/ParticipantsList/ParticipantsList";
+import axios from "../../utils/Firebase/axios";
+import { checkValidation } from "../../utils/Validators/Validators";
 
 const Invitation = (props) => {
-  const checkValidation = (value, rules) => {
-    let isValid = false;
-    if (rules.required) {
-      isValid = value.trim() !== "";
-    }
-    return isValid;
+  const setMeetingDateHandler = ({ value }) => {
+    const updatedMeeting = { ...props.meeting };
+    updatedMeeting.meetingDate = value;
+    props.setMeetingDate(updatedMeeting);
   };
 
   const inputChangeHandler = (event, inputElement) => {
@@ -32,6 +32,23 @@ const Invitation = (props) => {
     props.onChangeInput(updatedForm);
   };
 
+  const invitationSubmitHandler = (event) => {
+    event.preventDefault();
+    const meeting = {
+      subject: props.form.subject.value,
+      minute: props.form.minute.value,
+      meetingRoom: props.form.meetingRoom.value,
+      meetingDate: props.meeting.meetingDate,
+    };
+    axios
+      .post("/meeting.json", meeting)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   const elementsArray = [];
   for (let item in props.form) {
     elementsArray.push({
@@ -44,8 +61,11 @@ const Invitation = (props) => {
     <Wrapper>
       <div className="invitation">
         <h1>فرم دعوت به جلسه</h1>
-        <form>
-            <DatePicker label="تاریخ و ساعت جلسه :" />
+        <form onSubmit={invitationSubmitHandler}>
+          <DatePicker
+            label="تاریخ و ساعت جلسه :"
+            onClickSubmitButton={setMeetingDateHandler}
+          />
           {elementsArray.map((item) => (
             <Input
               key={item.id}
@@ -57,11 +77,11 @@ const Invitation = (props) => {
               change={(event) => inputChangeHandler(event, item.id)}
             />
           ))}
-          <div className="search-participants">
-            <Participants />
-            <Button btnType="form">ارسال دعوت نامه</Button>
-          </div>
+          <Button btnType="form">تنظیم جلسه</Button>
         </form>
+        <div className="search-participants">
+          <Participants />
+        </div>
         <ParticipantsList />
       </div>
     </Wrapper>
@@ -70,14 +90,16 @@ const Invitation = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    form: state.form,
+    form: state.invitationForm,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     onChangeInput: (updatedForm) =>
-      dispatch({ type: "INPUTCHANGE", data: updatedForm }),
+      dispatch({ type: "INPUTCHANGE", payload: { data: updatedForm } }),
+    setMeetingDate: (updatedMeeting) =>
+      dispatch({ type: "SETDATE", payload: { data: updatedMeeting } }),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Invitation);

@@ -1,2 +1,4 @@
 export const SHOWSIDEMENU = 'SHOWSIDMENU'
 export const INPUTCHANGE = 'INPUTCHANGE'
+export const SETDATE = 'SETDATE'
+export const SETMEETING = 'SETMEETING'

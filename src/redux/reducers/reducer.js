@@ -1,7 +1,7 @@
 import * as actionTypes from "../actions/actions";
 
 const initialState = {
-  form: {
+  invitationForm: {
     subject: {
       elementType: "input",
       elementConfig: {
@@ -42,20 +42,43 @@ const initialState = {
       used: false,
     },
   },
+  participants: {
+    name: "",
+    position: "",
+    state: "", // waiting, agree, reject
+    email: "",
+    mobile: "",
+  },
+  meeting:{
+    subject: '',
+    minute: '',
+    meetingRoom:'',
+    meetingDate: '',
+    participants: []
+  }
 };
-
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.INPUTCHANGE:
       return {
-          ...state,
-          form : action.data
+        ...state,
+        invitationForm: action.payload.data,
+      };
+    case actionTypes.SETDATE:
+      return{
+        ...state,
+        meeting: action.payload.data
+      }
+    case actionTypes.SETMEETING:
+      return {
+        ...state,
+        meeting: action.payload.data
       }
     default:
-      break
+      break;
   }
-  return state
+  return state;
 };
 
-export default reducer
+export default reducer;

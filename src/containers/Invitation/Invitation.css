@@ -13,15 +13,15 @@ input.dp__input {
     text-align: center;
     font-size: 17px;
 }
-.search-participants .input {
+form > div:nth-of-type(4) {
     display: inline-block;
     width: 75%;
 }
-.search-participants input {
+form > div:nth-of-type(4) input{
     line-height: 32px;
     border-radius: 0px 3px 3px 0px!important;
 }
-.search-participants .btn {
+form .btn {
     display: inline-block;
     width: 25%;
     margin: 0px!important;
