@@ -3,7 +3,7 @@ import Meetings from "../../components/parts/Meetings/Meetings";
 
 const Today = (props) => {
   return (
-    <div>
+    <div className="today">
       <h1>فهرست جلسات امروز</h1>
       <Meetings />
     </div>

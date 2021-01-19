@@ -1,0 +1,30 @@
+.invitation{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+.sc-kpOJdX > div:first-of-type {
+    display: inline-block;
+    margin-right: 16px;
+}
+input.dp__input {
+    border: none;
+    border-bottom: 2px solid rgba(32, 28, 28, 0.74);
+    text-align: center;
+    font-size: 17px;
+}
+form > div:nth-of-type(4) {
+    display: inline-block;
+    width: 75%;
+}
+form > div:nth-of-type(4) input{
+    line-height: 32px;
+    border-radius: 0px 3px 3px 0px!important;
+}
+form .btn {
+    display: inline-block;
+    width: 25%;
+    margin: 0px!important;
+    border-radius: 3px 0px 0px 3px!important;
+
+}

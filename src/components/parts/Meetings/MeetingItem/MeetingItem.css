@@ -1,5 +1,5 @@
 .meeting-item {
-    margin: 0.8rem 0;
+    margin: 0.5rem 0;
     padding: 0.5rem 10px;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.46);
     display: flex;
@@ -12,20 +12,24 @@
     width: 10%;
 }
 .meeting-item span{
-    line-height: 35px;
+    line-height: 32px;
+}
+.meeting-item p{
+    line-height: 32px;
+    margin: 0;
 }
 .meeting-item div{
     text-align: center;
 }
-.date-time{
+.meeting-item .date-time{
     width: 15%;
 }
-.room{
+.meeting-item .room{
     width: 15%;
 }
-.subject{
+.meeting-item .subject{
     width: 40%;
 }
-.participants{
+.meeting-item .participants{
     width: 20%;
 }

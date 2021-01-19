@@ -7,7 +7,7 @@ const MeetingsList = () => {
   return (
     <ul className="meetings-list">
       <MeetingItem
-        date="دوشنبه ۱۳ بهمن ماه"
+        date="دوشنبه ۱۳ بهمن"
         time="ساعت ۱۰:۳۰"
         room="مجازی"
         roomAddress="لینک جلسه"
@@ -16,7 +16,7 @@ const MeetingsList = () => {
         participants={["محمدی", "کشاورزی", "امیری"]}
       />
       <MeetingItem
-        date="شنبه ۱۸ بهمن ماه"
+        date="شنبه ۱۸ بهمن"
         time="ساعت ۱۲:۳۰"
         room="سالن تلاش"
         roomAddress="طبقه ۵"
