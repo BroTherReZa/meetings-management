@@ -12,9 +12,9 @@ import { checkValidation } from "../../../utils/Validators/Validators";
 
 const Invitation = (props) => {
   const setMeetingDateHandler = ({ value,}) => {
-    const updatedMeeting = { ...props.meeting };
-    updatedMeeting.meetingDate = Object.values(updatedMeeting.meetingDate)[4];
-    props.setMeetingDate(updatedMeeting);
+    const meetingDate = Object.values(value)[4];
+    props.setMeetingDate(meetingDate);
+    console.log(meetingDate)
     // Object.values(updatedMeeting.meetingDate).map((item)=> console.log(item))
     // console.log(Object.values(updatedMeeting.meetingDate)[4])
   };
