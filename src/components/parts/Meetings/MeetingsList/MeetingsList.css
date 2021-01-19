@@ -1,0 +1,19 @@
+.meetings-list {
+    width: 100%;
+    /* max-width: 80%; */
+    margin: auto;
+}
+  
+.meetings-list h2 {
+    border-bottom: 3px solid #ccc;
+    padding-bottom: 1rem;
+}
+  
+.meetings-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+  
+
+  

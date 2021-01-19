@@ -42,6 +42,7 @@ const initialState = {
       used: false,
     },
   },
+  meetingDate: {},
   participants: {
     name: "",
     position: "",
@@ -49,13 +50,13 @@ const initialState = {
     email: "",
     mobile: "",
   },
-  meeting:{
-    subject: '',
-    minute: '',
-    meetingRoom:'',
-    meetingDate: '',
-    participants: []
-  }
+  meeting: {
+    subject: "",
+    minute: "",
+    meetingRoom: "",
+    meetingDate: "",
+    participants: [],
+  },
 };
 
 const reducer = (state = initialState, action) => {
@@ -66,15 +67,15 @@ const reducer = (state = initialState, action) => {
         invitationForm: action.payload.data,
       };
     case actionTypes.SETDATE:
-      return{
+      return {
         ...state,
-        meeting: action.payload.data
-      }
+        meetingDate: action.payload.data,
+      };
     case actionTypes.SETMEETING:
       return {
         ...state,
-        meeting: action.payload.data
-      }
+        meeting: action.payload.data,
+      };
     default:
       break;
   }

@@ -1,0 +1,31 @@
+.meeting-item {
+    margin: 0.8rem 0;
+    padding: 0.5rem 10px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.46);
+    display: flex;
+    justify-content: space-between;
+    border-radius: 3px;
+}
+.meeting-item .btn{
+    margin: 1px;
+    padding:5px;
+    width: 10%;
+}
+.meeting-item span{
+    line-height: 35px;
+}
+.meeting-item div{
+    text-align: center;
+}
+.date-time{
+    width: 15%;
+}
+.room{
+    width: 15%;
+}
+.subject{
+    width: 40%;
+}
+.participants{
+    width: 20%;
+}

@@ -4,17 +4,19 @@ import Input from "../../components/UI/Input/Input";
 import Button from "../../components/UI/Button/Button";
 import { connect } from "react-redux";
 import { DatePicker } from "jalali-react-datepicker";
-import Participants from "../../components/services/Participants/Participants";
+import Participants from "../../components/parts/Participants/Participants";
 import "./Invitation.css";
-import ParticipantsList from "../../components/services/Participants/ParticipantsList/ParticipantsList";
+import ParticipantsList from "../../components/parts/Participants/ParticipantsList/ParticipantsList";
 import axios from "../../utils/Firebase/axios";
 import { checkValidation } from "../../utils/Validators/Validators";
 
 const Invitation = (props) => {
-  const setMeetingDateHandler = ({ value }) => {
+  const setMeetingDateHandler = ({ value,}) => {
     const updatedMeeting = { ...props.meeting };
-    updatedMeeting.meetingDate = value;
+    updatedMeeting.meetingDate = Object.values(updatedMeeting.meetingDate)[4];
     props.setMeetingDate(updatedMeeting);
+    // Object.values(updatedMeeting.meetingDate).map((item)=> console.log(item))
+    // console.log(Object.values(updatedMeeting.meetingDate)[4])
   };
 
   const inputChangeHandler = (event, inputElement) => {
@@ -35,13 +37,13 @@ const Invitation = (props) => {
   const invitationSubmitHandler = (event) => {
     event.preventDefault();
     const meeting = {
+      meetingDate: props.meetingDate,
       subject: props.form.subject.value,
       minute: props.form.minute.value,
       meetingRoom: props.form.meetingRoom.value,
-      meetingDate: props.meeting.meetingDate,
     };
     axios
-      .post("/meeting.json", meeting)
+      .post("/meetings.json", meeting)
       .then((res) => {
         console.log(res);
       })
@@ -91,6 +93,7 @@ const Invitation = (props) => {
 const mapStateToProps = (state) => {
   return {
     form: state.invitationForm,
+    meetingDate: state.meetingDate
   };
 };
 

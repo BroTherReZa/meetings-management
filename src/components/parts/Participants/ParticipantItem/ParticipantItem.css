@@ -1,4 +1,4 @@
-.participants-item {
+.participant-item {
     margin: 0.8rem 0;
     padding: 0.5rem 10px;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.46);
@@ -6,10 +6,10 @@
     justify-content: space-between;
     border-radius: 3px;
 }
-.participants-item .btn{
+.participant-item .btn{
     margin: 1px;
     padding:5px
 }
-.participants-item span{
+.participant-item span{
     line-height: 35px;
 }
