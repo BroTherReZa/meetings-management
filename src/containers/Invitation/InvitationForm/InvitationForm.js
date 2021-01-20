@@ -10,13 +10,11 @@ import ParticipantsList from "../../../components/parts/Participants/Participant
 import axios from "../../../utils/Firebase/axios";
 import { checkValidation } from "../../../utils/Validators/Validators";
 
-const Invitation = (props) => {
+const InvitationForm = (props) => {
   const setMeetingDateHandler = ({ value,}) => {
     const meetingDate = Object.values(value)[4];
     props.setMeetingDate(meetingDate);
     console.log(meetingDate)
-    // Object.values(updatedMeeting.meetingDate).map((item)=> console.log(item))
-    // console.log(Object.values(updatedMeeting.meetingDate)[4])
   };
 
   const inputChangeHandler = (event, inputElement) => {
@@ -37,15 +35,18 @@ const Invitation = (props) => {
   const invitationSubmitHandler = (event) => {
     event.preventDefault();
     const meeting = {
-      meetingDate: props.meetingDate,
+      meetingDate: "دوشنبه ۱۵ بهمن",//props.meetingDate,
+      meetingTime: 'ساعت ۱۰:۳۰',
+      meetingRoom: props.form.meetingRoom.value,
+      meetingRoomAddress: "طبقه پنجم",
       subject: props.form.subject.value,
       minute: props.form.minute.value,
-      meetingRoom: props.form.meetingRoom.value,
+      participants: ["مدعو۱", "مدعو۲", "مدعو۳", "مدعو۴"]
     };
     axios
       .post("/meetings.json", meeting)
       .then((res) => {
-        console.log(res);
+        console.log("ok", res);
       })
       .catch((error) => {
         console.log(error);
@@ -105,4 +106,4 @@ const mapDispatchToProps = (dispatch) => {
       dispatch({ type: "SETDATE", payload: { data: updatedMeeting } }),
   };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(Invitation);
+export default connect(mapStateToProps, mapDispatchToProps)(InvitationForm);

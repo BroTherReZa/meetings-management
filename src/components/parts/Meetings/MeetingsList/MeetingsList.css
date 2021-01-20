@@ -15,5 +15,39 @@
     padding: 0;
 }
   
-
+.meeting-item {
+    margin: 0.5rem 0;
+    padding: 0.5rem 10px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.46);
+    display: flex;
+    justify-content: space-between;
+    border-radius: 3px;
+}
+.meeting-item .btn{
+    margin: 1px;
+    padding:5px;
+    width: 10%;
+}
+.meeting-item span{
+    line-height: 32px;
+}
+.meeting-item p{
+    line-height: 32px;
+    margin: 0;
+}
+.meeting-item div{
+    text-align: center;
+}
+.meeting-item .date-time{
+    width: 15%;
+}
+.meeting-item .room{
+    width: 15%;
+}
+.meeting-item .subject{
+    width: 40%;
+}
+.meeting-item .participants{
+    width: 20%;
+}
   

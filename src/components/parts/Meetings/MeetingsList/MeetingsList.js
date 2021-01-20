@@ -1,29 +1,33 @@
 import React from "react";
-import MeetingItem from "../MeetingItem/MeetingItem";
+import Button from "../../../UI/Button/Button";
 
 import "./MeetingsList.css";
 
-const MeetingsList = () => {
+const MeetingsList = (props) => {
   return (
     <ul className="meetings-list">
-      <MeetingItem
-        date="دوشنبه ۱۳ بهمن"
-        time="ساعت ۱۰:۳۰"
-        room="مجازی"
-        roomAddress="لینک جلسه"
-        subject="مدیریت پروژه"
-        minute="شرح اقدامات و برنامه ریزی"
-        participants={["محمدی", "کشاورزی", "امیری"]}
-      />
-      <MeetingItem
-        date="شنبه ۱۸ بهمن"
-        time="ساعت ۱۲:۳۰"
-        room="سالن تلاش"
-        roomAddress="طبقه ۵"
-        subject="پیگیری پروژه"
-        minute="گزارش پیشرفت پروژه و مدیریت و برنامه ریزی"
-        participants={["نوری", "ناظری", "امیری"]}
-      />
+      {props.meetings.map((m, index) => {
+        return (
+          <li key={index} className="meeting-item">
+            <div className="date-time">
+              <p>{m.meetingDate}</p>
+              <p>{m.meetingTime}</p>
+            </div>
+            <div className="room">
+              <p>{m.meetingRoom}</p>
+              <p>{m.meetingRoomAddress}</p>
+            </div>
+            <div className="subject">
+              <p>{m.subject}</p>
+              <p>{m.minute}</p>
+            </div>
+            <div className="participants">
+              <p>{m.participants.join(" ")}</p>
+            </div>
+            <Button btnType="cancel">لغو جلسه</Button>
+          </li>
+        );
+      })}
     </ul>
   );
 };

@@ -50,13 +50,7 @@ const initialState = {
     email: "",
     mobile: "",
   },
-  meeting: {
-    subject: "",
-    minute: "",
-    meetingRoom: "",
-    meetingDate: "",
-    participants: [],
-  },
+  meetings: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -75,6 +69,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         meeting: action.payload.data,
+      };
+    case actionTypes.GETMEETINGS:
+      return {
+        ...state,
+        meetings: action.payload.data,
       };
     default:
       break;
