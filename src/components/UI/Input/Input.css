@@ -1,6 +1,6 @@
 .input {
     width: 100%;
-    padding: 10px 0px;
+    padding: 5px;
     box-sizing: border-box;
 }
 .input-element{
@@ -18,5 +18,5 @@
     border: 2px solid #c62828
 }
 textarea {
-    height: 8em;
+    height: 5em;
 }

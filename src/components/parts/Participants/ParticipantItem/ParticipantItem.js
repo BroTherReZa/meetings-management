@@ -9,7 +9,7 @@ const ParticipantItem = (props) => {
       <span>آقای دکتر رحیمی</span>
       <span>کارشناس مرکز فاوا</span>
       <span>در انتظار تایید</span>
-      <Button btnType="cancel">لغو جلسه</Button>
+      <Button btnType="cancel">لغو دعوت</Button>
     </li>
   );
 };

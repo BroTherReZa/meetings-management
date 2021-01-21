@@ -5,11 +5,13 @@ import "./ParticipantsList.css";
 
 const ParticipantsList = (props) => {
   return (
-    <div className="participants">
-        <ul className="participants-list">
-      <ParticipantItem />
-      <ParticipantItem />
-    </ul>
+    <div className="participants-list">
+      <p>فهرست دعوت شدگان</p>
+
+      <ul>
+        <ParticipantItem />
+        <ParticipantItem />
+      </ul>
     </div>
   );
 };

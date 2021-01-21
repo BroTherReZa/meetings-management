@@ -1,0 +1,22 @@
+/* .participants-form > inputs > div:nth-child(3){
+    width: 45%;
+}
+.participants-form > inputs > div:nth-child(4){
+    width: 45%;
+} */
+.participants-form button {
+    width: 10%;
+    margin: 0;
+    line-height: 69px;
+    display: inline-block
+}
+.inputs{
+    margin: 0;
+    padding: 0%;
+    width: 90%;
+    display: inline-block;
+    vertical-align: middle;
+}
+.inputs .input{
+    width: 50%;
+}

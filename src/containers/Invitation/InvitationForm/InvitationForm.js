@@ -4,17 +4,18 @@ import Input from "../../../components/UI/Input/Input";
 import Button from "../../../components/UI/Button/Button";
 import { connect } from "react-redux";
 import { DatePicker } from "jalali-react-datepicker";
-import Participants from "../../../components/parts/Participants/Participants";
+import SearchParticipants from "../../../components/parts/Participants/SearchParticipants/SearchParticipants";
 import "./InvitationForm.css";
 import ParticipantsList from "../../../components/parts/Participants/ParticipantsList/ParticipantsList";
 import axios from "../../../utils/Firebase/axios";
 import { checkValidation } from "../../../utils/Validators/Validators";
+import NewParticipants from "../../../components/parts/Participants/NewParticipants/NewParticipants";
 
 const InvitationForm = (props) => {
-  const setMeetingDateHandler = ({ value,}) => {
+  const setMeetingDateHandler = ({ value }) => {
     const meetingDate = Object.values(value)[4];
     props.setMeetingDate(meetingDate);
-    console.log(meetingDate)
+    console.log(meetingDate);
   };
 
   const inputChangeHandler = (event, inputElement) => {
@@ -35,13 +36,13 @@ const InvitationForm = (props) => {
   const invitationSubmitHandler = (event) => {
     event.preventDefault();
     const meeting = {
-      meetingDate: "دوشنبه ۱۵ بهمن",//props.meetingDate,
-      meetingTime: 'ساعت ۱۰:۳۰',
+      meetingDate: "دوشنبه ۱۵ بهمن", //props.meetingDate,
+      meetingTime: "ساعت ۱۰:۳۰",
       meetingRoom: props.form.room.value,
       meetingRoomAddress: props.form.roomAddress,
       subject: props.form.subject.value,
       minute: props.form.minute.value,
-      participants: ["مدعو۱", "مدعو۲", "مدعو۳", "مدعو۴"]
+      participants: ["مدعو۱", "مدعو۲", "مدعو۳", "مدعو۴"],
     };
     axios
       .post("/meetings.json", meeting)
@@ -80,12 +81,11 @@ const InvitationForm = (props) => {
               change={(event) => inputChangeHandler(event, item.id)}
             />
           ))}
+            <SearchParticipants />
+            <NewParticipants />
           <Button btnType="form">تنظیم جلسه</Button>
         </form>
-        <div className="search-participants">
-          <Participants />
-        </div>
-        <ParticipantsList />
+          <ParticipantsList />
       </div>
     </Wrapper>
   );
@@ -94,7 +94,7 @@ const InvitationForm = (props) => {
 const mapStateToProps = (state) => {
   return {
     form: state.invitationForm,
-    meetingDate: state.meetingDate
+    meetingDate: state.meetingDate,
   };
 };
 

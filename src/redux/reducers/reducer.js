@@ -15,6 +15,19 @@ const initialState = {
       valid: false,
       used: false,
     },
+    host: {
+      elementType: "input",
+      elementConfig: {
+        type: "text",
+        placeholder: "میزبان جلسه",
+      },
+      value: "",
+      vaildation: {
+        required: true,
+      },
+      valid: false,
+      used: false,
+    },
     minute: {
       elementType: "textarea",
       elementConfig: {
@@ -57,11 +70,58 @@ const initialState = {
   },
   meetingDate: {},
   participants: {
-    name: "",
-    position: "",
-    state: "", // waiting, agree, reject
-    email: "",
-    mobile: "",
+    name: {
+      elementType: "input",
+      elementConfig: {
+        type: "text",
+        placeholder: "نام و نام خانوادگی",
+      },
+      value: "",
+      vaildation: {
+        required: true,
+      },
+      valid: false,
+      used: false,
+    },
+    position: {
+      elementType: "input",
+      elementConfig: {
+        type: "text",
+        placeholder: "پست سازمانی",
+      },
+      value: "",
+      vaildation: {
+        required: true,
+      },
+      valid: false,
+      used: false,
+    },
+    email: {
+      elementType: "input",
+      elementConfig: {
+        type: "text",
+        placeholder: "آدرس ایمیل",
+      },
+      value: "",
+      vaildation: {
+        required: true,
+      },
+      valid: false,
+      used: false,
+    },
+    mobile: {
+      elementType: "input",
+      elementConfig: {
+        type: "text",
+        placeholder: "شماره تلفن همراه",
+      },
+      value: "",
+      vaildation: {
+        required: true,
+      },
+      valid: false,
+      used: false,
+    },
   },
   meetings: [],
 };

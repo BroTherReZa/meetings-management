@@ -11,7 +11,6 @@ const Invitation = (props) => {
       .get("/meetings.json")
       .then((res) => {
         const meetingsList = (Object.values(res.data))
-        //console.log("ok", meetingsList)
         props.getMeetings(meetingsList);
       })
       .catch((error) => {
@@ -24,14 +23,14 @@ const Invitation = (props) => {
   };
 
   return (
-    <div className="today">
-      <div>
+    <div className="invitation">
+      <div className="subheader">
         <h1>فهرست دعوت نامه های ارسال شده </h1>
         <Button btnType="form" click={invitationRequestHandler}>
           تنظیم جلسه جدید
         </Button>
       </div>
-        <Meetings list={props.meetings} filter="today" />
+        <Meetings list={props.meetings} filter="today" /> 
     </div>
   );
 };
