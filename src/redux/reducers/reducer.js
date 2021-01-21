@@ -28,11 +28,24 @@ const initialState = {
       valid: false,
       used: false,
     },
-    meetingRoom: {
+    room: {
       elementType: "input",
       elementConfig: {
         type: "text",
-        placeholder: "محل جلسه",
+        placeholder: "محل برگزاری",
+      },
+      value: "",
+      vaildation: {
+        required: true,
+      },
+      valid: false,
+      used: false,
+    },
+    roomAddress: {
+      elementType: "input",
+      elementConfig: {
+        type: "text",
+        placeholder: "آدرس محل برگزاری",
       },
       value: "",
       vaildation: {

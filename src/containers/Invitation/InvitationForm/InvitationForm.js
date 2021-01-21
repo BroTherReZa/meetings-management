@@ -37,8 +37,8 @@ const InvitationForm = (props) => {
     const meeting = {
       meetingDate: "دوشنبه ۱۵ بهمن",//props.meetingDate,
       meetingTime: 'ساعت ۱۰:۳۰',
-      meetingRoom: props.form.meetingRoom.value,
-      meetingRoomAddress: "طبقه پنجم",
+      meetingRoom: props.form.room.value,
+      meetingRoomAddress: props.form.roomAddress,
       subject: props.form.subject.value,
       minute: props.form.minute.value,
       participants: ["مدعو۱", "مدعو۲", "مدعو۳", "مدعو۴"]

@@ -31,7 +31,7 @@ const Invitation = (props) => {
           تنظیم جلسه جدید
         </Button>
       </div>
-        <Meetings list={props.meetings} />
+        <Meetings list={props.meetings} filter="today" />
     </div>
   );
 };
