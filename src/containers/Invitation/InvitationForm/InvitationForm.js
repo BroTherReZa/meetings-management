@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Wrapper from "../../../components/hoc/Wrapper";
 import Input from "../../../components/UI/Input/Input";
 import Button from "../../../components/UI/Button/Button";
@@ -12,6 +12,41 @@ import { checkValidation } from "../../../utils/Validators/Validators";
 import NewParticipants from "../../../components/parts/Participants/NewParticipants/NewParticipants";
 
 const InvitationForm = (props) => {
+
+  // useEffect(()=>{
+  //   axios
+  //   .get("/contacts.json")
+  //   .then((res) => {
+  //     console.log("load DB", res.data);
+  //     if (res.data) {
+  //       const contactList = Object.values(res.data);
+  //       props.getContacts(contactList);
+  //     }
+  //   });
+  //   console.log('run effect')
+  // },[props.contactForm])
+
+  const newSumbitHandler = () => {
+    axios
+    .get("/contacts.json")
+    .then((res) => {
+      console.log("load DB", res.data);
+      if (res.data) {
+        const contactList = Object.values(res.data);
+        props.getContacts(contactList);
+      }
+      console.log(props.participants)
+    });
+  }
+
+  const elementsArray = [];
+  for (let item in props.form) {
+    elementsArray.push({
+      id: item,
+      config: props.form[item],
+    });
+  }
+
   const setMeetingDateHandler = ({ value }) => {
     const meetingDate = Object.values(value)[4];
     props.setMeetingDate(meetingDate);
@@ -53,13 +88,6 @@ const InvitationForm = (props) => {
         console.log(error);
       });
   };
-  const elementsArray = [];
-  for (let item in props.form) {
-    elementsArray.push({
-      id: item,
-      config: props.form[item],
-    });
-  }
 
   return (
     <Wrapper>
@@ -81,11 +109,11 @@ const InvitationForm = (props) => {
               change={(event) => inputChangeHandler(event, item.id)}
             />
           ))}
-            <SearchParticipants />
-            <NewParticipants />
+          <SearchParticipants />
+          <NewParticipants submit={newSumbitHandler}/>
           <Button btnType="form">تنظیم جلسه</Button>
         </form>
-          <ParticipantsList />
+        <ParticipantsList />
       </div>
     </Wrapper>
   );
@@ -95,15 +123,22 @@ const mapStateToProps = (state) => {
   return {
     form: state.invitationForm,
     meetingDate: state.meetingDate,
+    participants: state.participants,
+    contactForm: state.contactForm,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     onChangeInput: (updatedForm) =>
-      dispatch({ type: "INPUTCHANGE", payload: { data: updatedForm } }),
+      dispatch({
+        type: "INVITATIONINPUTCHANGE",
+        payload: { data: updatedForm },
+      }),
     setMeetingDate: (updatedMeeting) =>
-      dispatch({ type: "SETDATE", payload: { data: updatedMeeting } }),
+      dispatch({ type: "SETMEETINGDATE", payload: { data: updatedMeeting } }),
+    getContacts: (contactList) =>
+      dispatch({ type: "GETCONTACTS", payload: { data: contactList } }),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(InvitationForm);

@@ -69,7 +69,7 @@ const initialState = {
     },
   },
   meetingDate: {},
-  participants: {
+  cantactForm: {
     name: {
       elementType: "input",
       elementConfig: {
@@ -123,31 +123,37 @@ const initialState = {
       used: false,
     },
   },
+  participants: [],
   meetings: [],
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.INPUTCHANGE:
+    case actionTypes.INVITATIONINPUTCHANGE:
       return {
         ...state,
         invitationForm: action.payload.data,
       };
-    case actionTypes.SETDATE:
+    case actionTypes.SETMEETINGDATE:
       return {
         ...state,
         meetingDate: action.payload.data,
-      };
-    case actionTypes.SETMEETING:
-      return {
-        ...state,
-        meeting: action.payload.data,
       };
     case actionTypes.GETMEETINGS:
       return {
         ...state,
         meetings: action.payload.data,
       };
+    case actionTypes.CONTACTINPUTCHANGE:
+      return{
+        ...state,
+        cantactForm: action.payload.data
+      }
+    case actionTypes.GETCONTACTS:
+      return{
+        ...state,
+        participants: action.payload.data
+      }
     default:
       break;
   }

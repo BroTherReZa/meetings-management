@@ -1,16 +1,15 @@
-import React, {useEffect,} from "react";
+import React, { useEffect } from "react";
 import Meetings from "../../components/parts/Meetings/Meetings";
 import Button from "../../components/UI/Button/Button";
 import axios from "../../utils/Firebase/axios";
 import { connect } from "react-redux";
 
 const Invitation = (props) => {
-
   useEffect(() => {
     axios
       .get("/meetings.json")
       .then((res) => {
-        const meetingsList = (Object.values(res.data))
+        const meetingsList = Object.values(res.data);
         props.getMeetings(meetingsList);
       })
       .catch((error) => {
@@ -30,11 +29,10 @@ const Invitation = (props) => {
           تنظیم جلسه جدید
         </Button>
       </div>
-        <Meetings list={props.meetings} filter="today" /> 
+      <Meetings list={props.meetings} filter="today" />
     </div>
   );
 };
-
 
 const mapStateToProps = (state) => {
   return {
@@ -47,6 +45,5 @@ const mapDispatchToProps = (dispatch) => {
       dispatch({ type: "GETMEETINGS", payload: { data: meetingsList } }),
   };
 };
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(Invitation);
