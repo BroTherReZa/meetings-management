@@ -37,6 +37,7 @@ const NewParticipants = (props) => {
       position: props.contactForm.position.value,
       email: props.contactForm.email.value,
       mobile: props.contactForm.mobile.value,
+      state: '',
     };
     axios
       .post("/contacts.json", newContact)

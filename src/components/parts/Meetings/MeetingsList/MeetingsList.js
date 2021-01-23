@@ -3,6 +3,7 @@ import Button from "../../../UI/Button/Button";
 
 import "./MeetingsList.css";
 
+
 const MeetingsList = (props) => {
   return (
     <ul className="meetings-list">

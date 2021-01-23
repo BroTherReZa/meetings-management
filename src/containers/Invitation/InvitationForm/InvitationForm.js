@@ -35,7 +35,7 @@ const InvitationForm = (props) => {
         const contactList = Object.values(res.data);
         props.getContacts(contactList);
       }
-      console.log(props.participants)
+      //console.log(props.participants)
     });
   }
 
@@ -113,7 +113,7 @@ const InvitationForm = (props) => {
           <NewParticipants submit={newSumbitHandler}/>
           <Button btnType="form">تنظیم جلسه</Button>
         </form>
-        <ParticipantsList />
+        <ParticipantsList list={props.participants} />
       </div>
     </Wrapper>
   );
