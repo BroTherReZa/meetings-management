@@ -1,74 +1,79 @@
 import * as actionTypes from "../actions/actions";
 
 const initialState = {
-  invitationForm: {
-    subject: {
-      elementType: "input",
-      elementConfig: {
-        type: "text",
-        placeholder: "موضوع جلسه",
+  invitation: {
+    id: "",
+    form: {
+      subject: {
+        elementType: "input",
+        elementConfig: {
+          type: "text",
+          placeholder: "موضوع جلسه",
+        },
+        value: "",
+        vaildation: {
+          required: true,
+        },
+        valid: false,
+        used: false,
       },
-      value: "",
-      vaildation: {
-        required: true,
+      host: {
+        elementType: "input",
+        elementConfig: {
+          type: "text",
+          placeholder: "میزبان جلسه",
+        },
+        value: "",
+        vaildation: {
+          required: true,
+        },
+        valid: false,
+        used: false,
       },
-      valid: false,
-      used: false,
+      minute: {
+        elementType: "textarea",
+        elementConfig: {
+          type: "text",
+          placeholder: "دستور جلسه",
+        },
+        value: "",
+        vaildation: {
+          required: true,
+        },
+        valid: false,
+        used: false,
+      },
+      room: {
+        elementType: "input",
+        elementConfig: {
+          type: "text",
+          placeholder: "محل برگزاری",
+        },
+        value: "",
+        vaildation: {
+          required: true,
+        },
+        valid: false,
+        used: false,
+      },
+      roomAddress: {
+        elementType: "input",
+        elementConfig: {
+          type: "text",
+          placeholder: "آدرس محل برگزاری",
+        },
+        value: "",
+        vaildation: {
+          required: true,
+        },
+        valid: false,
+        used: false,
+      },
     },
-    host: {
-      elementType: "input",
-      elementConfig: {
-        type: "text",
-        placeholder: "میزبان جلسه",
-      },
-      value: "",
-      vaildation: {
-        required: true,
-      },
-      valid: false,
-      used: false,
-    },
-    minute: {
-      elementType: "textarea",
-      elementConfig: {
-        type: "text",
-        placeholder: "دستور جلسه",
-      },
-      value: "",
-      vaildation: {
-        required: true,
-      },
-      valid: false,
-      used: false,
-    },
-    room: {
-      elementType: "input",
-      elementConfig: {
-        type: "text",
-        placeholder: "محل برگزاری",
-      },
-      value: "",
-      vaildation: {
-        required: true,
-      },
-      valid: false,
-      used: false,
-    },
-    roomAddress: {
-      elementType: "input",
-      elementConfig: {
-        type: "text",
-        placeholder: "آدرس محل برگزاری",
-      },
-      value: "",
-      vaildation: {
-        required: true,
-      },
-      valid: false,
-      used: false,
-    },
+    date: "",
+    time: "",
+    participants: [],
   },
-  meetingDate: {},
   cantactForm: {
     name: {
       elementType: "input",
@@ -132,28 +137,52 @@ const reducer = (state = initialState, action) => {
     case actionTypes.INVITATIONINPUTCHANGE:
       return {
         ...state,
-        invitationForm: action.payload.data,
+        invitation: {
+          ...state.invitation,
+          form: action.payload.data,
+        },
       };
     case actionTypes.SETMEETINGDATE:
       return {
         ...state,
-        meetingDate: action.payload.data,
+        invitation: {
+          ...state.invitation,
+          date: action.payload.data,
+        },
       };
+    case actionTypes.SETMEETINGTIME:
+      return {
+        ...state,
+        invitation: {
+          ...state.invitation,
+          time: action.payload.data,
+        },
+      };
+    case actionTypes.CONTACTINPUTCHANGE:
+      return {
+        ...state,
+        cantactForm: action.payload.data,
+      };
+    case actionTypes.SETCONTACT:
+      return {
+        ...state,
+        invitation: {
+          ...state.invitation,
+          participants: action.payload.data,
+        },
+      };
+
     case actionTypes.GETMEETINGS:
       return {
         ...state,
         meetings: action.payload.data,
       };
-    case actionTypes.CONTACTINPUTCHANGE:
-      return{
-        ...state,
-        cantactForm: action.payload.data
-      }
+
     case actionTypes.GETCONTACTS:
-      return{
+      return {
         ...state,
-        participants: action.payload.data
-      }
+        participants: action.payload.data,
+      };
     default:
       break;
   }

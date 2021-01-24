@@ -8,6 +8,7 @@ import axios from "../../../../utils/Firebase/axios";
 import "./NewParticipants.css";
 
 const NewParticipants = (props) => {
+
   const elementsArray = [];
   for (let item in props.contactForm) {
     elementsArray.push({
@@ -15,7 +16,7 @@ const NewParticipants = (props) => {
       config: props.contactForm[item],
     });
   }
-  const contactInputChangeHandler = (event, inputElement) => {
+  const inputChangeHandler = (event, inputElement) => {
     const updatedForm = {
       ...props.contactForm,
     };
@@ -27,28 +28,30 @@ const NewParticipants = (props) => {
     );
     updatedElement.used = true;
     updatedForm[inputElement] = updatedElement;
-    props.onChangeContactInput(updatedForm);
+    props.onChangeInput(updatedForm);
   };
 
   const addContactHandler = (event) => {
     event.preventDefault();
-    const newContact = {
+    const newContact = [{
       name: props.contactForm.name.value,
       position: props.contactForm.position.value,
       email: props.contactForm.email.value,
       mobile: props.contactForm.mobile.value,
-      state: '',
-    };
+      state: 'آماده ارسال',
+    }];
     axios
       .post("/contacts.json", newContact)
       .then((res) => {
-        console.log("add DB", res);
-        props.submit()
+        console.log("Add Contact To DB", res);
+        props.submit(newContact)
       })
       .catch((error) => {
-        console.log(error);
+        console.log('err', error);
       });
   };
+
+
   return (
     <div className="participants-form">
       <div className="inputs">
@@ -60,7 +63,7 @@ const NewParticipants = (props) => {
             value={item.config.value}
             invalid={!item.config.valid}
             used={item.config.used}
-            change={(event) => contactInputChangeHandler(event, item.id)}
+            change={(event) => inputChangeHandler(event, item.id)}
           />
         ))}
       </div>
@@ -82,8 +85,8 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    onChangeContactInput: (newParticipant) =>
-      dispatch({ type: "CONTACTINPUTCHANGE", payload: { data: newParticipant } }),
+    onChangeInput: (updatedForm) =>
+      dispatch({ type: "CONTACTINPUTCHANGE", payload: { data: updatedForm } }),
   };
 };
 

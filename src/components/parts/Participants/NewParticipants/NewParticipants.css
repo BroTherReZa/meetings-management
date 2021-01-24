@@ -20,3 +20,18 @@
 .inputs .input{
     width: 50%;
 }
+.participant-item {
+    margin: 0.8rem 0;
+    padding: 0.5rem 10px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.46);
+    display: flex;
+    justify-content: space-between;
+    border-radius: 3px;
+}
+.participant-item .btn{
+    margin: 1px;
+    padding:5px
+}
+.participant-item span{
+    line-height: 35px;
+}
