@@ -33,13 +33,13 @@ const NewParticipants = (props) => {
 
   const addContactHandler = (event) => {
     event.preventDefault();
-    const newContact = [{
+    const newContact = {
       name: props.contactForm.name.value,
       position: props.contactForm.position.value,
       email: props.contactForm.email.value,
       mobile: props.contactForm.mobile.value,
       state: 'آماده ارسال',
-    }];
+    };
     axios
       .post("/contacts.json", newContact)
       .then((res) => {

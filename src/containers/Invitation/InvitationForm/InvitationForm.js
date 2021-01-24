@@ -58,7 +58,7 @@ const InvitationForm = (props) => {
     const updatedParticipants = [...props.invitation.participants];
     updatedParticipants.push(newContact);
     props.setContact(updatedParticipants);
-    console.log(props.invitation.participants)
+    //console.log(props.invitation.participants)
   };
 
   const invitationSubmitHandler = (event) => {
