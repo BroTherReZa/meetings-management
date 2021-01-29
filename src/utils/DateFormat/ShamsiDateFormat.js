@@ -19,7 +19,7 @@ export const ShamsiDateFormat = (value) => {
   let isValidDateTime = false;
   let jDate = "";
   let jTime = "";
-  console.log(value)
+  //console.log(value)
   if (value["_i"]) {
     jDate = formatDate(value["_i"].slice(0, 10));
     jTime = formatTime(value["_d"]);

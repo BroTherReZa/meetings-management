@@ -11,6 +11,7 @@ import axios from "../../../utils/Firebase/axios";
 import { checkValidation } from "../../../utils/Validators/Validators";
 import NewParticipants from "../../../components/parts/Participants/NewParticipants/NewParticipants";
 import { ShamsiDateFormat } from "../../../utils/DateFormat/ShamsiDateFormat";
+import { v4 as uuidv4 } from 'uuid';
 
 const InvitationForm = (props) => {
   const elementsArray = [];
@@ -55,12 +56,12 @@ const InvitationForm = (props) => {
   const invitationSubmitHandler = (event) => {
     event.preventDefault();
     const meeting = {
-      meetingId: props.invitation.id,
+      meetingId: uuidv4(),
       subject: props.invitation.form.subject.value,
-      host: props.invitation.form.host,
+      host: props.invitation.form.host.value,
       minute: props.invitation.form.minute.value,
       meetingRoom: props.invitation.form.room.value,
-      meetingRoomAddress: props.invitation.form.roomAddress,
+      meetingRoomAddress: props.invitation.form.roomAddress.value,
       meetingDate: props.invitation.date,
       meetingTime: props.invitation.time,
       participants: props.invitation.participants,

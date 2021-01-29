@@ -3,7 +3,6 @@ import Button from "../../../UI/Button/Button";
 
 import "./MeetingsList.css";
 
-
 const MeetingsList = (props) => {
   return (
     <ul className="meetings-list">
@@ -23,8 +22,13 @@ const MeetingsList = (props) => {
               <p>{m.minute}</p>
             </div>
             <div className="participants">
-              <p>{m.participants.join(" ")}</p>
+              <p>
+                {m.participants.map((p, index) => {
+                  return (<span key={index}>{p.name + " "}</span>);
+                })}
+              </p>
             </div>
+
             <Button btnType="cancel">لغو جلسه</Button>
           </li>
         );
