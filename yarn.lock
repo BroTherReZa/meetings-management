@@ -1779,6 +1779,13 @@
   "resolved" "https://registry.yarnpkg.com/@types/minimatch/-/minimatch-3.0.3.tgz"
   "version" "3.0.3"
 
+"@types/moment-jalaali@^0.7.4":
+  "integrity" "sha512-xuwc+he5jcujrn/dlLwTQc4JBoIkYJHbW1xjvbUxzUYqKrwdUWzYth2NeY0J/v6TxEkmJUTV0WEbxarcOQn8wQ=="
+  "resolved" "https://registry.npmjs.org/@types/moment-jalaali/-/moment-jalaali-0.7.4.tgz"
+  "version" "0.7.4"
+  dependencies:
+    "moment" ">=2.14.0"
+
 "@types/node@*":
   "integrity" "sha512-JsoLXFppG62tWTklIoO4knA+oDTYsmqWxHRvd4lpmfQRNhX6osheUOWETP2jMoV/2bEHuMra8Pp3Dmo/stBFcw=="
   "resolved" "https://registry.yarnpkg.com/@types/node/-/node-14.14.9.tgz"
@@ -6426,7 +6433,12 @@
     "html-escaper" "^2.0.0"
     "istanbul-lib-report" "^3.0.0"
 
-"jalali-moment@^3.3.1":
+"jalaali-js@^1.1.0":
+  "integrity" "sha512-eS+zDRtz2JcGnVPWeng53rzlKU8tX2RWbJ1cqu1+eZHPEh1QL5ydB+pXD4RCf/zE3eKDN2bLQEjY0u/WIewMVQ=="
+  "resolved" "https://registry.npmjs.org/jalaali-js/-/jalaali-js-1.1.5.tgz"
+  "version" "1.1.5"
+
+"jalali-moment@^3.3.1", "jalali-moment@^3.3.9":
   "integrity" "sha512-IuDky847OVHiYZbknZJat2gj7smYe2FGAbxIxTTU/vTgZebeFFn4sl63ieDvL2WwiO9gk35RSToR4aAEtbgXWg=="
   "resolved" "https://registry.npmjs.org/jalali-moment/-/jalali-moment-3.3.9.tgz"
   "version" "3.3.9"
@@ -7605,7 +7617,24 @@
   "resolved" "https://registry.yarnpkg.com/mkdirp/-/mkdirp-1.0.4.tgz"
   "version" "1.0.4"
 
-"moment@^2.26.0":
+"moment-jalaali@^0.9.2":
+  "integrity" "sha512-Z7dgu6NFnq9MhbAtwj0x7tHFXm+rzSu5Ju7Fc3RloqFQ/3zSJh8kuzxNdAp7cgMF/s/ydob+fAEJvQds/hz25g=="
+  "resolved" "https://registry.npmjs.org/moment-jalaali/-/moment-jalaali-0.9.2.tgz"
+  "version" "0.9.2"
+  dependencies:
+    "jalaali-js" "^1.1.0"
+    "moment" "^2.22.2"
+    "moment-timezone" "^0.5.21"
+    "rimraf" "^2.6.2"
+
+"moment-timezone@^0.5.21":
+  "integrity" "sha512-Z8QNyuQHQAmWucp8Knmgei8YNo28aLjJq6Ma+jy1ZSpSk5nyfRT8xgUbSQvD2+2UajISfenndwvFuH3NGS+nvA=="
+  "resolved" "https://registry.npmjs.org/moment-timezone/-/moment-timezone-0.5.32.tgz"
+  "version" "0.5.32"
+  dependencies:
+    "moment" ">= 2.9.0"
+
+"moment@^2.22.2", "moment@^2.26.0", "moment@>= 2.9.0", "moment@>=2.14.0":
   "integrity" "sha512-kHmoybcPV8Sqy59DwNDY3Jefr64lK/by/da0ViFcuA4DH0vQg5Q6Ze5VimxkfQNSC+Mls/Kx53s7TjP1RhFEDQ=="
   "resolved" "https://registry.npmjs.org/moment/-/moment-2.29.1.tgz"
   "version" "2.29.1"
@@ -9897,7 +9926,7 @@
   "resolved" "https://registry.yarnpkg.com/rgba-regex/-/rgba-regex-1.0.0.tgz"
   "version" "1.0.0"
 
-"rimraf@^2.5.4", "rimraf@^2.6.3":
+"rimraf@^2.5.4", "rimraf@^2.6.2", "rimraf@^2.6.3":
   "integrity" "sha512-uWjbaKIK3T1OSVptzX7Nl6PvQ3qAGtKEtVRjRuazjfL3Bx5eI409VZSqgND+4UNnmzLVdPj9FqFJNPqBZFve4w=="
   "resolved" "https://registry.yarnpkg.com/rimraf/-/rimraf-2.7.1.tgz"
   "version" "2.7.1"

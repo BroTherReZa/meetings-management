@@ -15,7 +15,7 @@ const ParticipantsList = (props) => {
               <span>{m.position}</span>
               <span>{m.email}</span>
               <span>{m.mobile}</span>
-              <span>{m.state}</span>              
+              <span>{m.state}</span>
               <Button btnType="cancel">لغو دعوت</Button>
             </li>
           );

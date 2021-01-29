@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Wrapper from "../../../components/hoc/Wrapper";
 import Input from "../../../components/UI/Input/Input";
 import Button from "../../../components/UI/Button/Button";
@@ -10,21 +10,9 @@ import ParticipantsList from "../../../components/parts/Participants/Participant
 import axios from "../../../utils/Firebase/axios";
 import { checkValidation } from "../../../utils/Validators/Validators";
 import NewParticipants from "../../../components/parts/Participants/NewParticipants/NewParticipants";
+import { ShamsiDateFormat } from "../../../utils/DateFormat/ShamsiDateFormat";
 
 const InvitationForm = (props) => {
-  // useEffect(()=>{
-  //   axios
-  //   .get("/contacts.json")
-  //   .then((res) => {
-  //     console.log("load DB", res.data);
-  //     if (res.data) {
-  //       const contactList = Object.values(res.data);
-  //       props.getContacts(contactList);
-  //     }
-  //   });
-  //   console.log('run effect')
-  // },[props.contactForm])
-
   const elementsArray = [];
   for (let item in props.invitation.form) {
     elementsArray.push({
@@ -34,9 +22,12 @@ const InvitationForm = (props) => {
   }
 
   const setMeetingDateHandler = ({ value }) => {
-    //const meetingDate = Object.values(value)[4];
-    props.setMeetingDate("دوشنبه ۱۶ آذر"); // need to update
-    props.setMeetingTime("ساعت ۱۰:۳۰"); // need to update
+    const { jDate, jTime, isValidDateTime } = ShamsiDateFormat(value);
+    if(isValidDateTime){
+      console.log("date:", jDate, "time:", jTime);
+      props.setMeetingDate(jDate); // need to update
+      props.setMeetingTime(jTime); // need to update
+    }
   };
 
   const inputChangeHandler = (event, inputElement) => {
