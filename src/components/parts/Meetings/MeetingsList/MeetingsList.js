@@ -1,16 +1,19 @@
 import React from "react";
+import { ShamsiDateShow } from "../../../../utils/DateFormat/ShamsiDateFormat";
 import Button from "../../../UI/Button/Button";
 
 import "./MeetingsList.css";
 
 const MeetingsList = (props) => {
+
+
   return (
     <ul className="meetings-list">
       {props.meetings.map((m, index) => {
         return (
           <li key={index} className="meeting-item">
             <div className="date-time">
-              <p>{m.meetingDate}</p>
+              <p>{ShamsiDateShow(m.meetingDate)}</p>
               <p>{m.meetingTime}</p>
             </div>
             <div className="room">

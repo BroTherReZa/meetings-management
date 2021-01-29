@@ -1,22 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Meetings from "../../components/parts/Meetings/Meetings";
 import Button from "../../components/UI/Button/Button";
-import axios from "../../utils/Firebase/axios";
-import { connect } from "react-redux";
 
 const Invitation = (props) => {
-  useEffect(() => {
-    axios
-      .get("/meetings.json")
-      .then((res) => {
-        const meetingsList = Object.values(res.data);
-        props.getMeetings(meetingsList);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
-
   const invitationRequestHandler = () => {
     props.history.push("/invitationform");
   };
@@ -29,21 +15,9 @@ const Invitation = (props) => {
           تنظیم جلسه جدید
         </Button>
       </div>
-      <Meetings list={props.meetings} filter="today" />
+      <Meetings filter="invitation" />
     </div>
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    meetings: state.meetings,
-  };
-};
-const mapDispatchToProps = (dispatch) => {
-  return {
-    getMeetings: (meetingsList) =>
-      dispatch({ type: "GETMEETINGS", payload: { data: meetingsList } }),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Invitation);
+export default Invitation;

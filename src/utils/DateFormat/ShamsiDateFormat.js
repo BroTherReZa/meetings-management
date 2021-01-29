@@ -1,19 +1,21 @@
 import moment from "jalali-moment";
-export const ShamsiDateFormat = (value) => {
-  //console.log("all", value);
-  const formatDate = (datePicked) => {
-    let inputDate = datePicked.split("-"); //  2020 12 28
-    inputDate = inputDate.join("/");
+export const ShamsiDateShow = (inputDate) => {
+  inputDate = inputDate.join("/");
     let dateConverted = moment(inputDate, "YYYY/MM/DD");
     dateConverted = dateConverted.locale("fa");
     dateConverted =
-      dateConverted.format("ddd") + " " + dateConverted.format("YYYY/MMMM/DD");
-    //console.log(dateConverted);
+      dateConverted.format("ddd") + " " + dateConverted.format("DD MMMM YYYY");
     return dateConverted;
+}
+
+export const ShamsiDateFormat = (value) => {
+  const formatDate = (datePicked) => {
+    let inputDate = datePicked.split("-"); //  2020 12 28
+    return inputDate;
   };
   const formatTime = (timePicked) => {
-    //console.log(timePicked.toString().split(" ")[4])
     let timeConverted = timePicked.toString().split(" ")[4];
+    timeConverted = "ساعت "+ timeConverted
     return timeConverted;
   };
   let isValidDateTime = false;

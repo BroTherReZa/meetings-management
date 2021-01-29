@@ -8,9 +8,8 @@ const Planned = (props) => {
         <div className="planned">
             <h1>فهرست جلسات برنامه ریزی شده</h1>
             <div className="date-line">شنبه ۴ بهمن ماه</div>
-            <Meetings />
+            <Meetings filter="planned" />
             <div className="date-line">یکشنبه ۵ بهمن ماه</div>
-            <Meetings />
         </div>
     )
 }

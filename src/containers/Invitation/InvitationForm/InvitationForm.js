@@ -25,7 +25,7 @@ const InvitationForm = (props) => {
   const setMeetingDateHandler = ({ value }) => {
     const { jDate, jTime, isValidDateTime } = ShamsiDateFormat(value);
     if(isValidDateTime){
-      console.log("date:", jDate, "time:", jTime);
+      //console.log("date:", jDate, "time:", jTime);
       props.setMeetingDate(jDate); // need to update
       props.setMeetingTime(jTime); // need to update
     }
@@ -70,6 +70,7 @@ const InvitationForm = (props) => {
       .post("/meetings.json", meeting)
       .then((res) => {
         console.log("ok", res);
+        props.history.push("/invitation");
       })
       .catch((error) => {
         console.log(error);

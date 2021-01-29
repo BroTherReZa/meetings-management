@@ -172,6 +172,7 @@ const reducer = (state = initialState, action) => {
         },
       };
 
+      
     case actionTypes.GETMEETINGS:
       return {
         ...state,
