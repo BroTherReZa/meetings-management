@@ -8,6 +8,7 @@ import Planned from '../../../containers/Planned/Planned'
 import Invited from '../../../containers/Invited/Invited'
 import Invitation from "../../../containers/Invitation/Invitation"
 import InvitationForm from '../../../containers/Invitation/InvitationForm/InvitationForm'
+import Login from '../../../containers/Account/Login/Login'
 
 
 
@@ -19,6 +20,7 @@ const RouteConfig = () => {
       <Route exact path={Path.INVITED} component={Invited} />
       <Route exact path={Path.INVITATION} component={Invitation} />
       <Route exact path={Path.INVITATIONFORM} component={InvitationForm} />
+      <Route exact path={Path.LOGIN} component={Login} />
       <PrivateRoute path="/account">
           <Account />
       </PrivateRoute>

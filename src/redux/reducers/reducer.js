@@ -128,6 +128,78 @@ const initialState = {
       used: false,
     },
   },
+  loginForm: {
+    signIn: {
+      mobile: {
+        elementType: "input",
+        elementConfig: {
+          type: "text",
+          placeholder: "09...",
+        },
+        value: "",
+        vaildation: {
+          required: true,
+        },
+        valid: false,
+        used: false,
+      },
+    },
+    loginVerify: {
+      elementType: "input",
+      elementConfig: {
+        type: "text",
+        placeholder: "- - - -",
+      },
+      value: "",
+      vaildation: {
+        required: true,
+      },
+      valid: false,
+      used: false,
+    },
+    signUp: {
+      verifyCode: {
+        elementType: "input",
+        elementConfig: {
+          type: "text",
+          placeholder: "- - - -",
+        },
+        value: "",
+        vaildation: {
+          required: true,
+        },
+        valid: false,
+        used: false,
+      },
+      name: {
+        elementType: "input",
+        elementConfig: {
+          type: "text",
+          placeholder: "نام و نام خانوادگی",
+        },
+        value: "",
+        vaildation: {
+          required: true,
+        },
+        valid: false,
+        used: false,
+      },
+      email: {
+        elementType: "input",
+        elementConfig: {
+          type: "text",
+          placeholder: "ایمیل",
+        },
+        value: "",
+        vaildation: {
+          required: true,
+        },
+        valid: false,
+        used: false,
+      },
+    },
+    level: '1'
+  },
   participants: [],
   meetings: [],
 };
@@ -171,8 +243,22 @@ const reducer = (state = initialState, action) => {
           participants: action.payload.data,
         },
       };
-
-      
+    case actionTypes.SIGNINCHANGEINPUT:
+      return {
+        ...state,
+        loginForm: {
+          ...state.loginForm,
+          signIn: action.payload.data
+        }
+      }
+      case actionTypes.SWITCHFORM:
+        return {
+          ...state,
+          loginForm: {
+            ...state.loginForm,
+            level: action.payload.data
+          }
+        }
     case actionTypes.GETMEETINGS:
       return {
         ...state,
