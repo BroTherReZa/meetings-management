@@ -4,21 +4,20 @@ import { connect } from "react-redux";
 import Input from '../../../../components/UI/Input/Input'
 import Button from '../../../../components/UI/Button/Button'
 
-import "./Login.css";
 
-const Mobile = (props) => {
+const Verify = (props) => {
 
   let elementsArray = [];
-  for (let item in props.loginForm.signIn) {
+  for (let item in props.loginForm) {
     elementsArray.push({
       id: item,
-      config: props.loginForm.signIn[item],
+      config: props.loginForm[item],
     });
   }
 
   const inputChangeHandler = (event, inputElement) => {
     const updatedForm = {
-      ...props.loginForm.signIn,
+      ...props.loginForm,
     };
     const updatedElement = { ...updatedForm[inputElement] };
     updatedElement.value = event.target.value
@@ -31,20 +30,9 @@ const Mobile = (props) => {
     props.onChangeInput(updatedForm);
   };
 
-  const mobileSubmitHandler = (event) => {
-      console.log("11")
-      event.preventDefault()
-    for (let item in props.loginForm.signUp) {
-        elementsArray.push({
-          id: item,
-          config: props.loginForm.signUp[item],
-        });
-      }
-  }
   return (
-    <div className="login">
-      <h1>ورود یا ثبت نام</h1>
-      <form onSubmit={mobileSubmitHandler}>
+    <div className="mobile">
+      <h2>کد ارسال شده به شماره موبایل {props.mobileNumber} را وارد نمایید</h2>
         {elementsArray.map((item) => (
           <Input
             key={item.id}
@@ -57,22 +45,22 @@ const Mobile = (props) => {
           />
         ))}
         <Button 
+        click={props.clicked}
         btnType="form"
-        disabled={!props.loginForm.signIn.mobile.valid}
+        disabled={!props.loginForm.verifyCode.valid}
         >ادامه</Button>
-      </form>
     </div>
   );
 };
 
 const mapStateToProps = (state) => {
   return {
-    loginForm: state.loginForm,
+    loginForm: state.loginForm.verifyForm,
   };
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    onChangeInput: (updatedForm) => dispatch({ type: "SIGNINCHANGEINPUT", payload: {data: updatedForm}}),
+    onChangeInput: (updatedForm) => dispatch({ type: "VERIFYCHANGEINPUT", payload: {data: updatedForm}}),
   };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(Mobile);
+export default connect(mapStateToProps, mapDispatchToProps)(Verify);

@@ -129,7 +129,7 @@ const initialState = {
     },
   },
   loginForm: {
-    signIn: {
+    mobileForm: {
       mobile: {
         elementType: "input",
         elementConfig: {
@@ -144,18 +144,20 @@ const initialState = {
         used: false,
       },
     },
-    loginVerify: {
-      elementType: "input",
-      elementConfig: {
-        type: "text",
-        placeholder: "- - - -",
+    verifyForm: {
+      verifyCode: {
+        elementType: "input",
+        elementConfig: {
+          type: "text",
+          placeholder: "- - - -",
+        },
+        value: "",
+        vaildation: {
+          required: true,
+        },
+        valid: false,
+        used: false,
       },
-      value: "",
-      vaildation: {
-        required: true,
-      },
-      valid: false,
-      used: false,
     },
     signUp: {
       verifyCode: {
@@ -198,7 +200,7 @@ const initialState = {
         used: false,
       },
     },
-    level: '1'
+    level: "1",
   },
   participants: [],
   meetings: [],
@@ -243,33 +245,36 @@ const reducer = (state = initialState, action) => {
           participants: action.payload.data,
         },
       };
-    case actionTypes.SIGNINCHANGEINPUT:
+    case actionTypes.MOBILECHANGEINPUT:
       return {
         ...state,
         loginForm: {
           ...state.loginForm,
-          signIn: action.payload.data
-        }
-      }
-      case actionTypes.SWITCHFORM:
-        return {
-          ...state,
-          loginForm: {
-            ...state.loginForm,
-            level: action.payload.data
-          }
-        }
+          mobileForm: action.payload.data,
+        },
+      };
+    case actionTypes.VERIFYCHANGEINPUT:
+      return {
+        ...state,
+        loginForm: {
+          ...state.loginForm,
+          verifyForm: action.payload.data,
+        },
+      };
+    case actionTypes.SWITCHFORM:
+      return {
+        ...state,
+        loginForm: {
+          ...state.loginForm,
+          level: action.payload.data,
+        },
+      };
     case actionTypes.GETMEETINGS:
       return {
         ...state,
         meetings: action.payload.data,
       };
 
-    case actionTypes.GETCONTACTS:
-      return {
-        ...state,
-        participants: action.payload.data,
-      };
     default:
       break;
   }
