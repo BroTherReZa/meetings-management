@@ -1,5 +1,6 @@
 const HttpError = require('../models/http-error')
 const uuid = require('uuid')
+const { validationResult } = require('express-validator')
 
 
 let users = [{
@@ -19,7 +20,11 @@ const getUsers = (req, res, next) => {
     res.json({users: users})
 }
 
-const signup = (req, res, next) => {
+const signUp = (req, res, next) => {
+    const errors = validationResult(req)
+    if(!errors.isEmpty()){
+        throw new HttpError('invalid input!', 422)
+    }
     const { name, email, password} = req.body
     const createdUser = {
         id: uuid.v4(),
@@ -42,5 +47,5 @@ const login = (req, res, next) => {
 }
 
 exports.getUsers = getUsers
-exports.signup = signup
+exports.signUp = signUp
 exports.login = login

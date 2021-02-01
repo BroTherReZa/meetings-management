@@ -1,5 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const mongoose = require('mongoose')
 
 const meetingsRoute = require('./routes/meetings-routes')
 const usersRoute = require('./routes/users-routes')
@@ -27,5 +28,13 @@ app.use((error, req, res, next)=> {
 })
 // - middlewares
 
-
-app.listen(5000)
+mongoose
+.connect('mongodb://127.0.0.1:27017/mma')
+.then(()=>{
+    console.log('DB Connected!')
+    app.listen(5000)
+})
+.catch((err)=>{
+    console.log('DB Connection failed!')
+    console.log(err)
+})
