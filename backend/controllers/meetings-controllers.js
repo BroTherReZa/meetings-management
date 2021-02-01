@@ -1,6 +1,7 @@
 const HttpError = require('../models/http-error')
 const uuid = require('uuid')
 const { validationResult } = require('express-validator')
+const Meeting = require('../models/meeting')
 
 
 
@@ -31,12 +32,12 @@ const getMeetingById = (req, res, next) => {
     res.json({message: meeting})
 }
 
-const createMeeting = (req, res, next) => {
+const createMeeting = async (req, res, next) => {
     const errors = validationResult(req)
     if(!errors.isEmpty()){
         throw new HttpError('invalid input!', 422)
     }
-    const { meetingId,
+    const {
         subject,
         host,
         minute,
@@ -45,12 +46,25 @@ const createMeeting = (req, res, next) => {
         meetingDate,
         meetingTime,
         participants,} = req.body
-    const createdMeeting = {
-        id: uuid.v4(),
+    
+    const createdMeeting = new Meeting({
         subject: subject,
-        minute: minute
+        host: host,
+        minute: minute,
+        meetingRoom: meetingRoom,
+        meetingRoomAddress: meetingRoomAddress,
+        meetingDate: meetingDate,
+        meetingTime: meetingTime,
+        participants: participants,
+    })
+
+    try {
+        await createdMeeting.save()
+    } catch (err) {
+        new HttpError('Creating Meeting failed!', 500)
+        return next(error)
     }
-    meetings.push(createdMeeting)
+
     res.status(201).json({message: createdMeeting})
     
 }
