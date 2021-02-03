@@ -22,7 +22,7 @@ const signUp = async (req, res, next) => {
         throw new HttpError('invalid input!', 422)
     }
 
-    const { name, email, password } = req.body
+    const { name, department,email, password } = req.body
 
     let existingUser
     try {
@@ -38,6 +38,7 @@ const signUp = async (req, res, next) => {
     
     const createdUser = new User ({
         name: name,
+        department: department,
         email: email,
         password: password,
         meetings: []

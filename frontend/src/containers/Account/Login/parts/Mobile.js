@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import Input from "../../../../components/UI/Input/Input";
 import Button from "../../../../components/UI/Button/Button";
 
+
 const Mobile = (props) => {
   let elementsArray = [];
   for (let item in props.loginForm) {

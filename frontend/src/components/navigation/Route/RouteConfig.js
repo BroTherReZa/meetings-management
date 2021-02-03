@@ -1,14 +1,16 @@
 import { Route, Switch} from "react-router-dom";
-import * as Path from "./ConstPath";
-import NotFound from "./NotFound";
+import * as Path from "../ConstPath";
+import NotFound from "../NotFound";
 import PrivateRoute from "./PrivateRoute";
-import Account from '../../../containers/Account/Account'
+import Account from '../../../containers/Account/Profile/Profile'
 import Today from "../../../containers/Today/Today";
 import Planned from '../../../containers/Planned/Planned'
 import Invited from '../../../containers/Invited/Invited'
 import Invitation from "../../../containers/Invitation/Invitation"
 import InvitationForm from '../../../containers/Invitation/InvitationForm/InvitationForm'
 import Login from '../../../containers/Account/Login/Login'
+import Signup from "../../../containers/Account/Signup/Signup";
+import Signin from "../../../containers/Account/Signin/Signin";
 
 
 
@@ -21,6 +23,9 @@ const RouteConfig = () => {
       <Route exact path={Path.INVITATION} component={Invitation} />
       <Route exact path={Path.INVITATIONFORM} component={InvitationForm} />
       <Route exact path={Path.LOGIN} component={Login} />
+      <Route exact path={Path.SIGNUP} component={Signup} />
+      <Route exact path={Path.SIGNIN} component={Signin} />
+      
       <PrivateRoute path="/account">
           <Account />
       </PrivateRoute>

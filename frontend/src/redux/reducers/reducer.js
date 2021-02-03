@@ -128,6 +128,88 @@ const initialState = {
       used: false,
     },
   },
+  signupForm: {
+    name: {
+      elementType: "input",
+      elementConfig: {
+        type: "text",
+        placeholder: "نام و نام خانوادگی",
+      },
+      value: "",
+      vaildation: {
+        required: true,
+      },
+      valid: false,
+      used: false,
+    },
+    department: {
+      elementType: "input",
+      elementConfig: {
+        type: "text",
+        placeholder: "واحد سازمانی",
+      },
+      value: "",
+      vaildation: {
+        required: true,
+      },
+      valid: false,
+      used: false,
+    },
+    email: {
+      elementType: "input",
+      elementConfig: {
+        type: "text",
+        placeholder: "ایمیل",
+      },
+      value: "",
+      vaildation: {
+        required: true,
+      },
+      valid: false,
+      used: false,
+    },
+    password: {
+      elementType: "input",
+      elementConfig: {
+        type: "password",
+        placeholder: "کلمه عبور",
+      },
+      value: "",
+      vaildation: {
+        required: true,
+      },
+      valid: false,
+      used: false,
+    },
+  },
+  signinForm: {
+    email: {
+      elementType: "input",
+      elementConfig: {
+        type: "text",
+        placeholder: "ایمیل",
+      },
+      value: "",
+      vaildation: {
+        required: true,
+      },
+      valid: false,
+      used: false,
+    },
+    password: {
+      elementType: "input",
+      elementConfig: {
+        type: "password",
+        placeholder: "کلمه عبور",
+      },
+      value: "",
+      vaildation: {
+        required: true,
+      },
+      valid: false,
+      used: false,
+    },
+  },
   loginForm: {
     mobileForm: {
       mobile: {
@@ -245,6 +327,16 @@ const reducer = (state = initialState, action) => {
           participants: action.payload.data,
         },
       };
+    case actionTypes.SIGNUPINPUTCHANGE:
+      return {
+        ...state,
+        signupForm: action.payload.data,
+      }
+    case actionTypes.SIGNININPUTCHANGE:
+      return {
+        ...state,
+        signinForm: action.payload.data,
+      }
     case actionTypes.MOBILECHANGEINPUT:
       return {
         ...state,
