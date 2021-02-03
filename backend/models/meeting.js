@@ -11,6 +11,7 @@ const meetingSchema = new Schema({
     meetingDate: {type: String, required: true},
     meetingTime: {type: String, required: true},
     participants: {type: String, required: true},
+    creator: { type: mongoose.Types.ObjectId, required: true, ref: 'User'}
 })
 
 module.exports = mongoose.model('Meeting', meetingSchema)

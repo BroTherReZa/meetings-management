@@ -1,48 +1,72 @@
-const HttpError = require('../models/http-error')
-const uuid = require('uuid')
 const { validationResult } = require('express-validator')
 
+const HttpError = require('../models/http-error')
+const User = require('../models/user')
 
-let users = [{
-    id: 'u1',
-    name: 'reza',
-    email: 'brother_reza@yahoo.com',
-    password: '1234'
-},
-{
-    id: 'u2',
-    name: 'ali',
-    email: 'ali@yahoo.com',
-    password: '123'
-}]
 
-const getUsers = (req, res, next) => {
-    res.json({users: users})
+const getUsers = async (req, res, next) => {
+    let users
+    try {
+        users = await User.find({}, '-password')
+    } catch (err) {
+        const error = new HttpError('not found any user', 500)
+        return next(error)
+    }
+    res.json({users: users.map( u => u.toObject({ getters: true }))})
 }
 
-const signUp = (req, res, next) => {
+const signUp = async (req, res, next) => {
     const errors = validationResult(req)
+
     if(!errors.isEmpty()){
         throw new HttpError('invalid input!', 422)
     }
-    const { name, email, password} = req.body
-    const createdUser = {
-        id: uuid.v4(),
+
+    const { name, email, password } = req.body
+
+    let existingUser
+    try {
+        existingUser = await User.findOne({ email: email })
+    } catch (err) {
+        const error = new HttpError('signup failed', 500)
+        return next(error)
+    }
+    if(existingUser){
+        const error = new HttpError('user exist', 422)
+        return next(error)
+    }
+    
+    const createdUser = new User ({
         name: name,
         email: email,
-        password: password
+        password: password,
+        meetings: []
+    })
+    try {
+        await createdUser.save()
+    } catch (err) {
+        const error = new HttpError('signup faild', 500)
+        return next(error)
     }
-    users.push(createdUser)
-    res.status(201).json({newUser: createdUser})
-    
+    res.status(201).json({ user: createdUser.toObject({ getters: true }) })
 }
-const login = (req, res, next) => {
+
+const login = async (req, res, next) => {
     const { email, password } = req.body
-    const validUser = users.find( u => u.email === email)
-    if(!validUser || validUser.password !== password){
-        const error = new HttpError('not a valid user', 401)
+
+    let existingUser
+    try {
+        existingUser = await User.findOne({email: email})
+    } catch (err) {
+        const error = new HttpError('login failed', 500)
+        return next(error)
     }
-    res.json({message: 'logged in'})
+    if(!existingUser || existingUser.password !== password){
+        const error = new HttpError('invalid input', 401)
+        return next(error)
+    }
+    
+    res.json({ message: 'logged in'} )
     
 }
 
