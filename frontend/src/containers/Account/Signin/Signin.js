@@ -1,11 +1,13 @@
-import React from "react"
+import React, { useContext } from "react"
 import { checkValidation } from "../../../utils/Validators/Validators"
 import { connect } from "react-redux"
 import "./Signin.css"
 import Input from "../../../components/UI/Input/Input"
 import Button from "../../../components/UI/Button/Button"
+import { AuthContext } from '../../../components/context/auth-context' 
 
 const Signin = (props) => {
+    const auth = useContext(AuthContext)
     const elementsArray = []
     for (let item in props.signinForm) {
         elementsArray.push({
@@ -30,8 +32,8 @@ const Signin = (props) => {
     }
 
     const signinHandler = (event) => {
-        event.preventDefault()
-        console.log(props.signinForm)
+        event.preventDefault();
+        auth.login()
     }
     return (
         <div className="signin">
@@ -49,7 +51,7 @@ const Signin = (props) => {
                     />
                 ))}
 
-                <Button btnType="form">ثبت نام</Button>
+                <Button btnType="form">ورود</Button>
             </form>
         </div>
     )

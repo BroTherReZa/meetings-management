@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import MeetingsList from "./MeetingsList/MeetingsList";
 import { connect } from "react-redux";
-import axios from "../../../utils/Firebase/axios";
+import axios from "../../../utils/Database/axios-firebase";
 
 const Meetings = (props) => {
   useEffect(() => {

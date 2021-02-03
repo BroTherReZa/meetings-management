@@ -284,6 +284,7 @@ const initialState = {
     },
     level: "1",
   },
+  isLoggedIn: false,
   participants: [],
   meetings: [],
 };
@@ -336,6 +337,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         signinForm: action.payload.data,
+      }
+    case actionTypes.SETLOGINMODE:
+      return {
+        ...state,
+        isLoggedIn: action.payload.data
       }
     case actionTypes.MOBILECHANGEINPUT:
       return {

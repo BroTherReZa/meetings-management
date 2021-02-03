@@ -16,6 +16,7 @@ const getUsers = async (req, res, next) => {
 }
 
 const signUp = async (req, res, next) => {
+    
     const errors = validationResult(req)
 
     if(!errors.isEmpty()){
@@ -23,7 +24,6 @@ const signUp = async (req, res, next) => {
     }
 
     const { name, department,email, password } = req.body
-
     let existingUser
     try {
         existingUser = await User.findOne({ email: email })

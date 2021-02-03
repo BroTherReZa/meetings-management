@@ -7,7 +7,7 @@ import { DatePicker } from "jalali-react-datepicker";
 import SearchParticipants from "../../../components/parts/Participants/SearchParticipants/SearchParticipants";
 import "./InvitationForm.css";
 import ParticipantsList from "../../../components/parts/Participants/ParticipantsList/ParticipantsList";
-import axios from "../../../utils/Firebase/axios";
+import axios from "../../../utils/Database/axios-firebase";
 import { checkValidation } from "../../../utils/Validators/Validators";
 import NewParticipants from "../../../components/parts/Participants/NewParticipants/NewParticipants";
 import { ShamsiDateFormat } from "../../../utils/DateFormat/ShamsiDateFormat";

@@ -1,12 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import NavItem from '../NavItem/NavItem'
-
+import { AuthContext } from '../../../context/auth-context'
 import './NavItems.css'
 
 const NavItems = (props) => {
+    const auth = useContext(AuthContext)
+
     return(
         <ul className="nav-items">
-            <NavItem link="/today" count='2'>جلسات امروز</NavItem>
+            {auth.isLoggedIn && (
+            <NavItem link="/today" count='2'>جلسات امروز</NavItem>            )}
             <NavItem link="/planned" count="4">برنامه ریزی شده</NavItem>
             <NavItem link="/invited">دعوت شده</NavItem>
             <NavItem link="/invitation">دعوت به جلسه</NavItem>

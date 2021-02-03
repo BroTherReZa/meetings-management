@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { checkValidation } from "../../../../utils/Validators/Validators";
 import Input from "../../../UI/Input/Input";
 import Button from "../../../UI/Button/Button";
-import axios from "../../../../utils/Firebase/axios";
+import axios from "../../../../utils/Database/axios-firebase";
 
 import "./NewParticipants.css";
 

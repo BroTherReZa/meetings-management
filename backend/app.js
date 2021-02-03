@@ -11,6 +11,15 @@ const app = express()
 
 // - middlewares routes
 app.use(bodyParser.json())
+
+app.use((req, res, next)=>{
+    res.setHeader('Access-Control-Allow-Origin','*')
+    res.setHeader('Access-Control-Allow-Headers','*')
+    res.setHeader('Access-Control-Allow-Methods','*')
+    next()
+})
+
+
 app.use("/api/meeting", meetingsRoute)
 app.use('/api/user', usersRoute)
 
@@ -30,7 +39,7 @@ app.use((error, req, res, next)=> {
 
 // DB connection
 mongoose
-.connect('mongodb://127.0.0.1:27017/mma')
+.connect('mongodb://127.0.0.1:27017/mma2')
 .then(()=>{
     console.log('DB Connected!')
     app.listen(5000)
