@@ -1,61 +1,65 @@
-import React, { useEffect } from "react";
-import MeetingsList from "./MeetingsList/MeetingsList";
-import { connect } from "react-redux";
-import axios from "../../../utils/Database/axios-firebase";
+import React, { useEffect } from "react"
+import MeetingsList from "./MeetingsList/MeetingsList"
+import { connect } from "react-redux"
+import { useHttpClient } from "../../../components/hook/http-hook"
 
 const Meetings = (props) => {
-  useEffect(() => {
-    axios
-      .get("/meetings.json")
-      .then((res) => {
-        const meetingsList = Object.values(res.data);
-        props.getMeetings(meetingsList);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+    const { sendRequest } = useHttpClient()
+    useEffect(() => {
+        const fetchMeetings = async () => {
+            try {
+                const responseData = await sendRequest(
+                    "http://localhost:5000/api/meeting"
+                )
+                console.log(responseData.meetings)
+                props.getMeetings(responseData.meetings)
+            } catch (err) {
+                console.log(err)
+            }
+        }
+        fetchMeetings()
+    }, [sendRequest])
 
-  const filterMeetingsHandler = (list, filter) => {
-    console.log(list, filter);
-    if (list) {
-      switch (props.filter) {
-        case "today":
-          
-          return list;
-        case "planned":
-          return list;
-        case "invited":
-          return list;
-        case "invitation":
-          return list;
-        default:
-          return list;
-      }
-    }else{
-      console.log("not found any meeting")
+
+    const filterMeetingsHandler = (list, filter) => {
+        console.log(list, filter)
+        if (list) {
+            switch (props.filter) {
+                case "today":
+                    return list
+                case "planned":
+                    return list
+                case "invited":
+                    return list
+                case "invitation":
+                    return list
+                default:
+                    return list
+            }
+        } else {
+            console.log("not found any meeting")
+        }
     }
-  };
 
-  return (
-    <div className="meetings">
-      <MeetingsList
-        meetings={filterMeetingsHandler(props.meetings, props.filter)}
-      />
-    </div>
-  );
-};
+    return (
+        <div className="meetings">
+            <MeetingsList
+                meetings={filterMeetingsHandler(props.meetings, props.filter)}
+            />
+        </div>
+    )
+}
 
 const mapStateToProps = (state) => {
-  return {
-    meetings: state.meetings,
-  };
-};
+    return {
+        meetings: state.meetings,
+    }
+}
 const mapDispatchToProps = (dispatch) => {
-  return {
-    getMeetings: (meetingsList) =>
-      dispatch({ type: "GETMEETINGS", payload: { data: meetingsList } }),
-  };
-};
+    return {
+        getMeetings: (meetingsList) =>
+            dispatch({ type: "GETMEETINGS", payload: { data: meetingsList } }),
+    }
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(Meetings);
+export default connect(mapStateToProps, mapDispatchToProps)(Meetings)

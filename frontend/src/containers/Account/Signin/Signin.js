@@ -31,9 +31,28 @@ const Signin = (props) => {
         props.onChangeInput(updatedForm)
     }
 
-    const signinHandler = (event) => {
+    const signinHandler = async (event) => {
         event.preventDefault();
-        auth.login()
+        try {
+            const response = await fetch('http://localhost:5000/api/user/signin', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email: props.signupForm.email.value,
+                    password: props.signupForm.password.value
+                })
+            })
+            const responseData = await response.json()
+            if(!response.ok){
+                throw new Error(responseData.message)
+            }
+            auth.login()
+        } catch (err) {
+            console.log(err)
+        }
+        
     }
     return (
         <div className="signin">

@@ -13,7 +13,7 @@ const MeetingsList = (props) => {
         return (
           <li key={index} className="meeting-item">
             <div className="date-time">
-              <p>{ShamsiDateShow(m.meetingDate)}</p>
+              {/* <p>{ShamsiDateShow(m.meetingDate)}</p> */}
               <p>{m.meetingTime}</p>
             </div>
             <div className="room">
@@ -25,11 +25,11 @@ const MeetingsList = (props) => {
               <p>{m.minute}</p>
             </div>
             <div className="participants">
-              <p>
+              {/* <p>
                 {m.participants.map((p, index) => {
                   return (<span key={index}>{p.name + " "}</span>);
                 })}
-              </p>
+              </p> */}
             </div>
 
             <Button btnType="cancel">لغو جلسه</Button>

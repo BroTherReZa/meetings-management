@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import './Signup.css'
 import Input from '../../../components/UI/Input/Input'
 import Button from '../../../components/UI/Button/Button'
-import axios from '../../../utils/Database/axios-local'
 import { useHttpClient } from '../../../components/hook/http-hook'
 
 
@@ -19,6 +18,7 @@ const Signup = (props) => {
             config: props.signupForm[item]
         })
     }
+
 
     const inputChangeHandler = (event, inputElement) => {
         const updatedForm = {
@@ -38,43 +38,53 @@ const Signup = (props) => {
     const signupHandler = async (event) => {
         event.preventDefault()
 
-        // try {
-        //     const formData = new FormData()
-        //     formData.append('name',props.signupForm.name.value)
-        //     formData.append('department',props.signupForm.department.value)
-        //     formData.append('email',props.signupForm.email.value)
-        //     formData.append('password',props.signupForm.password.value)
-        //     const responseData = await sendRequest(
-        //         'http://localhost:5000/api/user/signup',
-        //         'POST',
-        //         formData 
-        //     )
-        //     console.log('send', responseData)
-        // } catch (err) {
-        //     console.log(err)
-        // }
-
-
-
-        console.log(props.signupForm.name.value)
         try {
-            const response = await fetch('http://localhost:5000/api/user/signup', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
+            // const formData = new FormData()
+            // formData.append('name',props.signupForm.name.value)
+            // formData.append('department',props.signupForm.department.value)
+            // formData.append('email',props.signupForm.email.value)
+            // formData.append('password',props.signupForm.password.value)
+            const responseData = await sendRequest(
+                'http://localhost:5000/api/user/signup',
+                'POST',
+                JSON.stringify({
                     name: props.signupForm.name.value,
                     department: props.signupForm.department.value,
                     email: props.signupForm.email.value,
                     password: props.signupForm.password.value
-                })
-            })
-            const responseData = await response.json()
-            console.log(responseData)
+                }),
+                {'Content-Type': 'application/json'}
+                 
+            )
+            console.log('send', responseData)
         } catch (err) {
             console.log(err)
         }
+
+
+
+        // try {
+        //     const response = await fetch('http://localhost:5000/api/user/signup', {
+        //         method: 'POST',
+        //         headers: {
+        //             'Content-Type': 'application/json',
+        //         },
+        //         body: JSON.stringify({
+        //             name: props.signupForm.name.value,
+        //             department: props.signupForm.department.value,
+        //             email: props.signupForm.email.value,
+        //             password: props.signupForm.password.value
+        //         })
+        //     })
+        //     const responseData = await response.json()
+        //     if(!response.ok){
+        //         throw new Error(responseData.message)
+        //     }
+        //     console.log(responseData)
+        //     auth.login()
+        // } catch (err) {
+        //     console.log(err)
+        // }
 
     }
 
