@@ -7,11 +7,9 @@ import { DatePicker } from "jalali-react-datepicker"
 import SearchParticipants from "../../../components/parts/Participants/SearchParticipants/SearchParticipants"
 import "./InvitationForm.css"
 import ParticipantsList from "../../../components/parts/Participants/ParticipantsList/ParticipantsList"
-import axios from "../../../utils/Database/axios-firebase"
 import { checkValidation } from "../../../utils/Validators/Validators"
 import NewParticipants from "../../../components/parts/Participants/NewParticipants/NewParticipants"
 import { ShamsiDateFormat } from "../../../utils/DateFormat/ShamsiDateFormat"
-import { v4 as uuidv4 } from "uuid"
 import { useHttpClient } from "../../../components/hook/http-hook"
 
 const InvitationForm = (props) => {
@@ -57,23 +55,39 @@ const InvitationForm = (props) => {
 
     const invitationSubmitHandler = async (event) => {
         event.preventDefault()
+        const test = JSON.stringify({
+          subject: props.invitation.form.subject.value,
+          host: props.invitation.form.host.value,
+          minute: props.invitation.form.minute.value,
+          meetingRoom: props.invitation.form.room.value,
+          meetingRoomAddress: props.invitation.form.roomAddress.value,
+          meetingDate: "", //props.invitation.date,
+          meetingTime: props.invitation.time,
+          participants: "", //props.invitation.participants,
+          creator: "601a9e92e835486f65067932",
+      })
+      console.log('trace1', test)
+      //const {subject, host, minute, meetingRoom, meetingRoomAddress, meetingDate, meetingTime, participants, creator} = req.body
+
         try {
             const responseData = await sendRequest(
                 "http://localhost:5000/api/meeting",
                 "POST",
                 JSON.stringify({
-                    subject: props.invitation.form.subject.value,
-                    host: props.invitation.form.host.value,
-                    minute: props.invitation.form.minute.value,
-                    meetingRoom: props.invitation.form.room.value,
-                    meetingRoomAddress: props.invitation.form.roomAddress.value,
-                    meetingDate: props.invitation.date,
-                    meetingTime: props.invitation.time,
-                    participants: props.invitation.participants,
-                    creator: "601a9e92e835486f65067932",
-                }),
-                { "Content-Type": "application/json" }
+                  subject: props.invitation.form.subject.value,
+                  host: props.invitation.form.host.value,
+                  minute: props.invitation.form.minute.value,
+                  meetingRoom: props.invitation.form.room.value,
+                  meetingRoomAddress: props.invitation.form.roomAddress.value,
+                  meetingDate: "meetingDate1",
+                  meetingTime: props.invitation.time,
+                  creator: "601a9e92e835486f65067932"
+              }),
+                {'Content-Type': 'application/json'}    
             )
+
+            console.log("ok", responseData)
+            //props.history.push("/invitation")
         } catch (err) {
             console.log(err)
         }

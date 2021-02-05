@@ -37,7 +37,8 @@ const createMeeting = async (req, res, next) => {
     if(!errors.isEmpty()){
         throw new HttpError('invalid input!', 422)
     }
-    const {subject, host, minute, meetingRoom, meetingRoomAddress, meetingDate, meetingTime, participants, creator} = req.body
+
+    const {subject, host, minute, meetingRoom, meetingRoomAddress, meetingDate, meetingTime, creator} = req.body
     
     const createdMeeting = new Meeting({
         subject: subject,
@@ -47,9 +48,10 @@ const createMeeting = async (req, res, next) => {
         meetingRoomAddress: meetingRoomAddress,
         meetingDate: meetingDate,
         meetingTime: meetingTime,
-        participants: participants,
         creator: creator
     })
+
+
     let user
     try {
         user = await User.findById(creator)

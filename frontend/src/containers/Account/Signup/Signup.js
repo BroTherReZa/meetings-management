@@ -53,10 +53,9 @@ const Signup = (props) => {
                     email: props.signupForm.email.value,
                     password: props.signupForm.password.value
                 }),
-                {'Content-Type': 'application/json'}
-                 
+                {'Content-Type': 'application/json'}    
             )
-            console.log('send', responseData)
+            console.log('ok', responseData)
         } catch (err) {
             console.log(err)
         }
