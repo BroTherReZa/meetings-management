@@ -1,4 +1,4 @@
-import React from "react"
+import React,{ useContext } from "react"
 import Wrapper from "../../../components/hoc/Wrapper"
 import Input from "../../../components/UI/Input/Input"
 import Button from "../../../components/UI/Button/Button"
@@ -11,9 +11,11 @@ import { checkValidation } from "../../../utils/Validators/Validators"
 import NewParticipants from "../../../components/parts/Participants/NewParticipants/NewParticipants"
 import { ShamsiDateFormat } from "../../../utils/DateFormat/ShamsiDateFormat"
 import { useHttpClient } from "../../../components/hook/http-hook"
+import { AuthContext } from "../../../components/context/auth-context"
 
 const InvitationForm = (props) => {
     const { sendRequest } = useHttpClient()
+    const auth = useContext(AuthContext)
     const elementsArray = []
     for (let item in props.invitation.form) {
         elementsArray.push({
@@ -64,9 +66,9 @@ const InvitationForm = (props) => {
           meetingDate: "", //props.invitation.date,
           meetingTime: props.invitation.time,
           participants: "", //props.invitation.participants,
-          creator: "601a9e92e835486f65067932",
+          creator: auth.userId, //"601a9e92e835486f65067932",
       })
-      console.log('trace1', test)
+      console.log('trace1', auth.userId)
       //const {subject, host, minute, meetingRoom, meetingRoomAddress, meetingDate, meetingTime, participants, creator} = req.body
 
         try {
@@ -81,7 +83,7 @@ const InvitationForm = (props) => {
                   meetingRoomAddress: props.invitation.form.roomAddress.value,
                   meetingDate: "meetingDate1",
                   meetingTime: props.invitation.time,
-                  creator: "601a9e92e835486f65067932"
+                  creator: auth.userId,
               }),
                 {'Content-Type': 'application/json'}    
             )

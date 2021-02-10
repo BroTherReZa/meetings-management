@@ -16,7 +16,7 @@ router.post('/signup',
         .not().isEmpty()
         .isLength({min: 5})
     ], userControllers.signUp)
-router.post('/login', userControllers.login)
+router.post('/signin', userControllers.signIn)
 
 module.exports = router
 

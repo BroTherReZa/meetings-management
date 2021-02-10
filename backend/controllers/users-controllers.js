@@ -52,7 +52,7 @@ const signUp = async (req, res, next) => {
     res.status(201).json({ user: createdUser.toObject({ getters: true }) })
 }
 
-const login = async (req, res, next) => {
+const signIn = async (req, res, next) => {
     const { email, password } = req.body
 
     let existingUser
@@ -67,10 +67,10 @@ const login = async (req, res, next) => {
         return next(error)
     }
     
-    res.json({ message: 'logged in'} )
+    res.json({ message: 'logged in', user: existingUser.toObject({ getters: true})} )
     
 }
 
 exports.getUsers = getUsers
 exports.signUp = signUp
-exports.login = login
+exports.signIn = signIn

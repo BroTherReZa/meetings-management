@@ -5,9 +5,11 @@ import "./Signin.css"
 import Input from "../../../components/UI/Input/Input"
 import Button from "../../../components/UI/Button/Button"
 import { AuthContext } from '../../../components/context/auth-context' 
+import { useHttpClient } from '../../../components/hook/http-hook'
 
 const Signin = (props) => {
     const auth = useContext(AuthContext)
+    const { sendRequest } = useHttpClient()
     const elementsArray = []
     for (let item in props.signinForm) {
         elementsArray.push({
@@ -33,26 +35,23 @@ const Signin = (props) => {
 
     const signinHandler = async (event) => {
         event.preventDefault();
+        console.log(props.signinForm.email.value)
         try {
-            const response = await fetch('http://localhost:5000/api/user/signin', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    email: props.signupForm.email.value,
-                    password: props.signupForm.password.value
-                })
-            })
-            const responseData = await response.json()
-            if(!response.ok){
-                throw new Error(responseData.message)
-            }
-            auth.login()
+            const responseData = await sendRequest(
+                'http://localhost:5000/api/user/signin',
+                'POST',
+                JSON.stringify({
+                    email: props.signinForm.email.value,
+                    password: props.signinForm.password.value
+                }),
+                {'Content-Type': 'application/json'}
+            )
+            console.log('ok', responseData)
+            auth.login(responseData.user.id)
+            props.history.push("/invitationform")
         } catch (err) {
             console.log(err)
         }
-        
     }
     return (
         <div className="signin">

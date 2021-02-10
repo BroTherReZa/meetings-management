@@ -39,7 +39,7 @@ const createMeeting = async (req, res, next) => {
     }
 
     const {subject, host, minute, meetingRoom, meetingRoomAddress, meetingDate, meetingTime, creator} = req.body
-    
+    console.log(meetingTime)
     const createdMeeting = new Meeting({
         subject: subject,
         host: host,
@@ -48,7 +48,7 @@ const createMeeting = async (req, res, next) => {
         meetingRoomAddress: meetingRoomAddress,
         meetingDate: meetingDate,
         meetingTime: meetingTime,
-        creator: creator
+        creator: creator,
     })
 
 
@@ -56,7 +56,7 @@ const createMeeting = async (req, res, next) => {
     try {
         user = await User.findById(creator)
     } catch (err) {
-        const error = new HttpError('Creating Meeting failed!', 500)
+        const error = new HttpError('Finding user failed!', 500)
         return next(error)
     }
     if(!user){
@@ -65,11 +65,14 @@ const createMeeting = async (req, res, next) => {
     }
 
     try {
+        console.log('0')
         await createdMeeting.save()
+        console.log('1')
         user.meetings.push(createdMeeting)
+        console.log('2')
         await user.save()
     } catch (err) {
-        new HttpError('Creating Meeting failed!', 500)
+        const error = new HttpError('Creating Meeting failed!', 500)
         return next(error)
     }
 

@@ -10,7 +10,11 @@ const App = (props) => {
         <AuthContext.Provider
             value={{
                 isLoggedIn: props.isLoggedIn,
-                login: () => props.setLoginMode(true),
+                userId: props.userId,
+                login: (uid) => {
+                    props.setLoginMode(true)
+                    props.setUserId(uid)
+                },
                 lgout: () => props.setLoginMode(false),
             }}
         >
@@ -26,6 +30,7 @@ const App = (props) => {
 const mapStateToProps = (state) => {
     return {
         isLoggedIn: state.isLoggedIn,
+        userId: state.userId
     }
 }
 const mapDispatchToProps = (dispatch) => {
@@ -34,6 +39,11 @@ const mapDispatchToProps = (dispatch) => {
             dispatch({
                 type: "SETLOGINMODE",
                 payload: { data: mode },
+            }),
+        setUserId: (uid) =>
+            dispatch({
+                type: "SETUSERID",
+                payload: { data: uid },
             }),
     }
 }
