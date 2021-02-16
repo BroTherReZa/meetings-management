@@ -2,9 +2,11 @@ import React from "react";
 import { ShamsiDateShow } from "../../../../utils/DateFormat/ShamsiDateFormat";
 import Button from "../../../UI/Button/Button";
 
+
 import "./MeetingsList.css";
 
 const MeetingsList = (props) => {
+
 
 
   return (
@@ -31,13 +33,15 @@ const MeetingsList = (props) => {
                 })}
               </p> */}
             </div>
-
-            <Button btnType="cancel">لغو جلسه</Button>
+            {/* <Button btnType="cancel" click={() => meetingCancelHandler(m.id)} >لغو جلسه</Button> */}
+            <Button btnType="cancel" click={() => props.meetingCancel(m.id)} >لغو جلسه</Button>
           </li>
         );
       })}
     </ul>
   );
 };
+
+
 
 export default MeetingsList;

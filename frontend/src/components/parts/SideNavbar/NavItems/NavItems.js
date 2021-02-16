@@ -8,11 +8,11 @@ const NavItems = (props) => {
 
     return(
         <ul className="nav-items">
-            {auth.isLoggedIn && (
-            <NavItem link="/today" count='2'>جلسات امروز</NavItem>            )}
-            <NavItem link="/planned" count="4">برنامه ریزی شده</NavItem>
-            <NavItem link="/invited">دعوت شده</NavItem>
-            <NavItem link="/invitation">دعوت به جلسه</NavItem>
+            {auth.isLoggedIn && (<NavItem link="/today" count='2'>جلسات امروز</NavItem>)}
+            {auth.isLoggedIn && (<NavItem link="/planned" count="4">برنامه ریزی شده</NavItem>)}
+            {auth.isLoggedIn && (<NavItem link="/invited">دعوت شده</NavItem>)}
+            {auth.isLoggedIn && (<NavItem link="/invitation">دعوت به جلسه</NavItem>)}
+         
             <NavItem link="/login">بازیابی کلمه عبور</NavItem>
             <NavItem link="/signup">ثبت نام</NavItem>
             <NavItem link="/signin">لاگین</NavItem>

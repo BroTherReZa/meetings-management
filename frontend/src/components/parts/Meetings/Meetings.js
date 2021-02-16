@@ -5,47 +5,62 @@ import { useHttpClient } from "../../../components/hook/http-hook"
 
 const Meetings = (props) => {
     const { sendRequest } = useHttpClient()
-    useEffect(() => {
-        const fetchMeetings = async () => {
-            try {
-                const responseData = await sendRequest(
-                    "http://localhost:5000/api/meeting"
-                )
-                console.log(responseData.meetings)
-                props.getMeetings(responseData.meetings)
-            } catch (err) {
-                console.log(err)
-            }
+
+
+    const meetingCancelHandler = async (mid) => {
+        console.log("1",props.meetings.filter((item) => item.id === mid))
+        try {
+            const responseData = await sendRequest(
+                `http://localhost:5000/api/meeting/${mid}`,
+                "DELETE"
+            )
+            console.log("ok", responseData)
+            fetchMeetings()
+        } catch (err) {
+            console.log(err)
         }
+    }
+    const fetchMeetings = async () => {
+        try {
+            const responseData = await sendRequest(
+                "http://localhost:5000/api/meeting"
+            )
+            console.log("useEffect", responseData.meetings)
+            props.getMeetings(responseData.meetings)
+        } catch (err) {
+            console.log(err)
+        }
+    }
+    useEffect(() => {
         fetchMeetings()
-    }, [sendRequest])
-
-
-    const filterMeetingsHandler = (list, filter) => {
-        console.log(list, filter)
-        if (list) {
+        if (props.meetings) {
             switch (props.filter) {
                 case "today":
-                    return list
+                    return
                 case "planned":
-                    return list
+                    return
                 case "invited":
-                    return list
+                    return
                 case "invitation":
-                    return list
+                    props.setMeetings(
+                        props.meetings.filter(
+                            (item) => item.creator === props.userId
+                        )
+                    )
                 default:
-                    return list
+                    return
             }
         } else {
             console.log("not found any meeting")
         }
-    }
+    }, [sendRequest])
+
+
 
     return (
         <div className="meetings">
-            <MeetingsList
-                meetings={filterMeetingsHandler(props.meetings, props.filter)}
-            />
+            <MeetingsList meetings={props.meetings}
+            meetingCancel={meetingCancelHandler} />
         </div>
     )
 }
@@ -53,12 +68,15 @@ const Meetings = (props) => {
 const mapStateToProps = (state) => {
     return {
         meetings: state.meetings,
+        userId: state.userId,
     }
 }
 const mapDispatchToProps = (dispatch) => {
     return {
         getMeetings: (meetingsList) =>
             dispatch({ type: "GETMEETINGS", payload: { data: meetingsList } }),
+        setMeetings: (list) =>
+            dispatch({ type: "SETMEETINGS", payload: { data: list } }),
     }
 }
 

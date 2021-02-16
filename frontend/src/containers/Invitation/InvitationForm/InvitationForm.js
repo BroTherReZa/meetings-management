@@ -1,4 +1,4 @@
-import React,{ useContext } from "react"
+import React, { useContext } from "react"
 import Wrapper from "../../../components/hoc/Wrapper"
 import Input from "../../../components/UI/Input/Input"
 import Button from "../../../components/UI/Button/Button"
@@ -57,63 +57,28 @@ const InvitationForm = (props) => {
 
     const invitationSubmitHandler = async (event) => {
         event.preventDefault()
-        const test = JSON.stringify({
-          subject: props.invitation.form.subject.value,
-          host: props.invitation.form.host.value,
-          minute: props.invitation.form.minute.value,
-          meetingRoom: props.invitation.form.room.value,
-          meetingRoomAddress: props.invitation.form.roomAddress.value,
-          meetingDate: "", //props.invitation.date,
-          meetingTime: props.invitation.time,
-          participants: "", //props.invitation.participants,
-          creator: auth.userId, //"601a9e92e835486f65067932",
-      })
-      console.log('trace1', auth.userId)
-      //const {subject, host, minute, meetingRoom, meetingRoomAddress, meetingDate, meetingTime, participants, creator} = req.body
-
         try {
             const responseData = await sendRequest(
                 "http://localhost:5000/api/meeting",
                 "POST",
                 JSON.stringify({
-                  subject: props.invitation.form.subject.value,
-                  host: props.invitation.form.host.value,
-                  minute: props.invitation.form.minute.value,
-                  meetingRoom: props.invitation.form.room.value,
-                  meetingRoomAddress: props.invitation.form.roomAddress.value,
-                  meetingDate: "meetingDate1",
-                  meetingTime: props.invitation.time,
-                  creator: auth.userId,
-              }),
-                {'Content-Type': 'application/json'}    
+                    subject: props.invitation.form.subject.value,
+                    host: props.invitation.form.host.value,
+                    minute: props.invitation.form.minute.value,
+                    meetingRoom: props.invitation.form.room.value,
+                    meetingRoomAddress: props.invitation.form.roomAddress.value,
+                    meetingDate: "meetingDate1", //props.invitation.date,
+                    meetingTime: props.invitation.time,
+                    creator: auth.userId,
+                }),
+                { "Content-Type": "application/json" }
             )
 
             console.log("ok", responseData)
-            //props.history.push("/invitation")
+            props.history.push("/invitation")
         } catch (err) {
             console.log(err)
         }
-
-        // const meeting = {
-        //     meetingId: uuidv4(),
-        //     subject: props.invitation.form.subject.value,
-        //     host: props.invitation.form.host.value,
-        //     minute: props.invitation.form.minute.value,
-        //     meetingRoom: props.invitation.form.room.value,
-        //     meetingRoomAddress: props.invitation.form.roomAddress.value,
-        //     meetingDate: props.invitation.date,
-        //     meetingTime: props.invitation.time,
-        //     participants: props.invitation.participants,
-        // }
-        // axios
-        //     .post("/meetings.json", meeting)
-        //     .then((res) => {
-        //         console.log("ok", res)
-        //         props.history.push("/invitation")
-        //     })
-        //     .catch((error) => {
-        //         console.log(error)
-        //     })
     }
 
     return (

@@ -48,7 +48,7 @@ const Signin = (props) => {
             )
             console.log('ok', responseData)
             auth.login(responseData.user.id)
-            props.history.push("/invitationform")
+            props.history.push("/today")
         } catch (err) {
             console.log(err)
         }

@@ -345,10 +345,10 @@ const reducer = (state = initialState, action) => {
                 isLoggedIn: action.payload.data,
             }
         case actionTypes.SETUSERID:
-              return {
-                  ...state,
-                  userId: action.payload.data,
-              }
+            return {
+                ...state,
+                userId: action.payload.data,
+            }
         case actionTypes.MOBILECHANGEINPUT:
             return {
                 ...state,
@@ -374,6 +374,11 @@ const reducer = (state = initialState, action) => {
                 },
             }
         case actionTypes.GETMEETINGS:
+            return {
+                ...state,
+                meetings: action.payload.data,
+            }
+        case actionTypes.SETMEETINGS:
             return {
                 ...state,
                 meetings: action.payload.data,
