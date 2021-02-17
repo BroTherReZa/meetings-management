@@ -6,61 +6,64 @@ import { useHttpClient } from "../../../components/hook/http-hook"
 const Meetings = (props) => {
     const { sendRequest } = useHttpClient()
 
-
     const meetingCancelHandler = async (mid) => {
-        console.log("1",props.meetings.filter((item) => item.id === mid))
+        console.log(
+            "1",
+            props.meetings.filter((item) => item.id === mid)
+        )
         try {
             const responseData = await sendRequest(
                 `http://localhost:5000/api/meeting/${mid}`,
                 "DELETE"
             )
             console.log("ok", responseData)
-            fetchMeetings()
         } catch (err) {
             console.log(err)
         }
     }
-    const fetchMeetings = async () => {
-        try {
-            const responseData = await sendRequest(
-                "http://localhost:5000/api/meeting"
-            )
-            console.log("useEffect", responseData.meetings)
-            props.getMeetings(responseData.meetings)
-        } catch (err) {
-            console.log(err)
-        }
-    }
+
     useEffect(() => {
-        fetchMeetings()
-        if (props.meetings) {
-            switch (props.filter) {
-                case "today":
-                    return
-                case "planned":
-                    return
-                case "invited":
-                    return
-                case "invitation":
-                    props.setMeetings(
-                        props.meetings.filter(
-                            (item) => item.creator === props.userId
-                        )
-                    )
-                default:
-                    return
+        const fetchMeetings = async () => {
+            try {
+                const responseData = await sendRequest(
+                    "http://localhost:5000/api/meeting"
+                )
+                console.log("useEffect", responseData.meetings)
+                props.getMeetings(responseData.meetings)
+                if (props.meetings) {
+                    console.log(props.filter)
+                    switch (props.filter) {
+                        case "today":
+                            return
+                        case "planned":
+                            return
+                        case "invited":
+                            return
+                        case "invitation":
+                            props.setMeetings(
+                                props.meetings.filter(
+                                    (item) => item.creator === props.userId
+                                )
+                            )
+                        default:
+                            return
+                    }
+                } else {
+                    console.log("not found any meeting")
+                }
+            } catch (err) {
+                console.log(err)
             }
-        } else {
-            console.log("not found any meeting")
         }
+        fetchMeetings()
     }, [sendRequest])
-
-
 
     return (
         <div className="meetings">
-            <MeetingsList meetings={props.meetings}
-            meetingCancel={meetingCancelHandler} />
+            <MeetingsList
+                meetings={props.meetings}
+                meetingCancel={meetingCancelHandler}
+            />
         </div>
     )
 }
