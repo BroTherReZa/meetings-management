@@ -4,8 +4,22 @@ import RouterConfig from "./components/navigation/Route/RouteConfig"
 import Layout from "./components/layout/Layout"
 import { AuthContext } from "./components/context/auth-context"
 import { connect } from "react-redux"
+import Base from './components/layout/Base'
+
 
 const App = (props) => {
+    let route
+    if (props.isLoggedIn) {
+        route = (
+            <Router>
+                <Layout>
+                    <RouterConfig />
+                </Layout>
+            </Router>
+        )
+    } else {
+        route = <Base />
+    }
     return (
         <AuthContext.Provider
             value={{
@@ -18,11 +32,7 @@ const App = (props) => {
                 lgout: () => props.setLoginMode(false),
             }}
         >
-            <Router>
-                <Layout>
-                    <RouterConfig />
-                </Layout>
-            </Router>
+            {route}
         </AuthContext.Provider>
     )
 }
@@ -30,7 +40,7 @@ const App = (props) => {
 const mapStateToProps = (state) => {
     return {
         isLoggedIn: state.isLoggedIn,
-        userId: state.userId
+        userId: state.userId,
     }
 }
 const mapDispatchToProps = (dispatch) => {

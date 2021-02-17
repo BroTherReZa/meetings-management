@@ -39,11 +39,6 @@ const Signup = (props) => {
         event.preventDefault()
 
         try {
-            // const formData = new FormData()
-            // formData.append('name',props.signupForm.name.value)
-            // formData.append('department',props.signupForm.department.value)
-            // formData.append('email',props.signupForm.email.value)
-            // formData.append('password',props.signupForm.password.value)
             const responseData = await sendRequest(
                 'http://localhost:5000/api/user/signup',
                 'POST',
@@ -59,31 +54,6 @@ const Signup = (props) => {
         } catch (err) {
             console.log(err)
         }
-
-
-
-        // try {
-        //     const response = await fetch('http://localhost:5000/api/user/signup', {
-        //         method: 'POST',
-        //         headers: {
-        //             'Content-Type': 'application/json',
-        //         },
-        //         body: JSON.stringify({
-        //             name: props.signupForm.name.value,
-        //             department: props.signupForm.department.value,
-        //             email: props.signupForm.email.value,
-        //             password: props.signupForm.password.value
-        //         })
-        //     })
-        //     const responseData = await response.json()
-        //     if(!response.ok){
-        //         throw new Error(responseData.message)
-        //     }
-        //     console.log(responseData)
-        //     auth.login()
-        // } catch (err) {
-        //     console.log(err)
-        // }
 
     }
 

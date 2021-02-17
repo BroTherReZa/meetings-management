@@ -288,10 +288,16 @@ const initialState = {
     userId: false,
     participants: [],
     meetings: [],
+    baseForm: true,
 }
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
+        case actionTypes.SETBASEFORM:
+            return {
+                ...state,
+                baseForm: action.payload.data,
+            }
         case actionTypes.INVITATIONINPUTCHANGE:
             return {
                 ...state,
