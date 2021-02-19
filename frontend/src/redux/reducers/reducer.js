@@ -210,7 +210,7 @@ const initialState = {
             used: false,
         },
     },
-    loginForm: {
+    recoveryForm: {
         mobileForm: {
             mobile: {
                 elementType: "input",
@@ -282,7 +282,7 @@ const initialState = {
                 used: false,
             },
         },
-        level: "1",
+        level: "0",
     },
     isLoggedIn: false,
     userId: false,
@@ -358,24 +358,24 @@ const reducer = (state = initialState, action) => {
         case actionTypes.MOBILECHANGEINPUT:
             return {
                 ...state,
-                loginForm: {
-                    ...state.loginForm,
+                recoveryForm: {
+                    ...state.recoveryForm,
                     mobileForm: action.payload.data,
                 },
             }
         case actionTypes.VERIFYCHANGEINPUT:
             return {
                 ...state,
-                loginForm: {
-                    ...state.loginForm,
+                recoveryForm: {
+                    ...state.recoveryForm,
                     verifyForm: action.payload.data,
                 },
             }
         case actionTypes.SWITCHFORM:
             return {
                 ...state,
-                loginForm: {
-                    ...state.loginForm,
+                recoveryForm: {
+                    ...state.recoveryForm,
                     level: action.payload.data,
                 },
             }

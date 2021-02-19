@@ -1,17 +1,16 @@
 import React from "react";
 import { connect } from "react-redux";
 import Mobile from './parts/Mobile'
-import "./Login.css";
 import Verify from "./parts/Verify";
 
-const Login = (props) => {
+const Recovery = (props) => {
 
 const formSwitchHandler = () => {
-    switch(props.loginForm.level){
+    switch(props.recoveryForm.level){
         case '1':
             return <Mobile clicked={mobileSubmitHandler}/>
         case '2':
-            return <Verify clicked={verifySubmitHandler} mobileNumber={props.loginForm.mobileForm.mobile.value} />
+            return <Verify clicked={verifySubmitHandler} mobileNumber={props.recoveryForm.mobileForm.mobile.value} />
         case '3':
             return <h1> login successfuly</h1>
     }
@@ -38,7 +37,7 @@ const formSwitchHandler = () => {
 
 const mapStateToProps = (state) => {
   return {
-    loginForm: state.loginForm,
+    recoveryForm: state.recoveryForm,
   };
 };
 const mapDispatchToProps = (dispatch) => {
@@ -46,4 +45,4 @@ const mapDispatchToProps = (dispatch) => {
     onChangeLevel: (newLevel) => dispatch({ type: "SWITCHFORM", payload: {data: newLevel}}),
   };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Recovery);

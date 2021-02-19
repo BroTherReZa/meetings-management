@@ -7,16 +7,16 @@ import Button from "../../../../components/UI/Button/Button";
 
 const Mobile = (props) => {
   let elementsArray = [];
-  for (let item in props.loginForm) {
+  for (let item in props.recoveryForm) {
     elementsArray.push({
       id: item,
-      config: props.loginForm[item],
+      config: props.recoveryForm[item],
     });
   }
 
   const inputChangeHandler = (event, inputElement) => {
     const updatedForm = {
-      ...props.loginForm,
+      ...props.recoveryForm,
     };
     const updatedElement = { ...updatedForm[inputElement] };
     updatedElement.value = event.target.value;
@@ -46,7 +46,7 @@ const Mobile = (props) => {
       <Button
         click={props.clicked}
         btnType="form"
-        disabled={!props.loginForm.mobile.valid}
+        disabled={!props.recoveryForm.mobile.valid}
       >
         ادامه
       </Button>
@@ -56,7 +56,7 @@ const Mobile = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    loginForm: state.loginForm.mobileForm,
+    recoveryForm: state.recoveryForm.mobileForm,
   };
 };
 const mapDispatchToProps = (dispatch) => {

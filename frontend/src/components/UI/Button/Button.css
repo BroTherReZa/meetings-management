@@ -16,8 +16,15 @@
    background: #de2f2f;
 }
 .form {
-   background: #8e24aa
+   /*background: #8e24aa; */
+   background: linear-gradient(to right, #ffb147, #cb2d13);
+   border-radius: 8px;
+   padding: 8px 16px
 }
 .mode{
-   background: #e9893a;
+   background: #263238;
+   width: 130px;
+}
+.mode:hover{
+   background: #000;
 }

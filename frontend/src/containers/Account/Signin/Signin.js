@@ -69,7 +69,7 @@ const Signin = (props) => {
                     />
                 ))}
 
-                <Button btnType="form">ورود</Button>
+                <Button btnType="form">ورود به سامانه</Button>
             </form>
         </div>
     )
