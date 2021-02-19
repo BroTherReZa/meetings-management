@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import Mobile from './parts/Mobile'
 import Verify from "./parts/Verify";
+import './Recovery.css'
 
 const Recovery = (props) => {
 
@@ -27,7 +28,7 @@ const formSwitchHandler = () => {
   props.onChangeLevel("3")
 }
   return (
-    <div className="login">
+    <div className="recovery">
       <form>
        {formSwitchHandler()} 
       </form>

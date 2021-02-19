@@ -23,6 +23,9 @@ const Base = (props) => {
         props.onChangeLevel("0")
         props.setBaseForm(!props.baseForm)
     }
+    const backFormHandler = () => {
+        props.onChangeLevel("0")
+    }
     const recoveryModeHandler = () => {
         props.onChangeLevel("1")
     }
@@ -33,9 +36,13 @@ const Base = (props) => {
             <Button btnType="mode" click={switchModeHandler}>
                 {props.baseForm ? "ثبت نام" : "ورود به سامانه "}
             </Button>
+            {props.recoveryForm.level === "0" ?
             <Button btnType="mode" click={recoveryModeHandler}>
                 بازیابی کلمه عبور
             </Button>
+            :<Button btnType="mode" click={backFormHandler}>
+            {!props.baseForm ? "ثبت نام" : "ورود به سامانه "}
+        </Button>}
         </div>
     )
 }

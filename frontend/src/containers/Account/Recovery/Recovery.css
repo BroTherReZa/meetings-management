@@ -1,13 +1,4 @@
-
-.login .input{
-    display: inline-block;
-    width: 60%;
+.recovery .input-element{
     direction: ltr;
-    line-height: 32px;
-    margin: 0;
-}
-.login button{
-    line-height: normal;
-    display: inline-block;
-    margin: 0;
+    text-align: center;
 }
